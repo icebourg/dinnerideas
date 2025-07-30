@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trader Joe's Dinner Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+            font-weight: 300;
+        }
+
+        .subtitle {
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+
+        .meal-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 5px solid #e74c3c;
+            text-align: left;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .meal-card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .meal-title {
+            color: #2c3e50;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .ingredients {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .ingredients li {
+            padding: 8px 0;
+            color: #34495e;
+            border-bottom: 1px solid #ecf0f1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .ingredients li:last-child {
+            border-bottom: none;
+        }
+
+        .price {
+            color: #27ae60;
+            font-weight: 600;
+        }
+
+        .meal-info {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 2px solid #ecf0f1;
+        }
+
+        .prep-time, .cost {
+            color: #7f8c8d;
+            font-weight: 500;
+        }
+
+        .cost {
+            color: #27ae60;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        .random-btn {
+            background: linear-gradient(45deg, #e74c3c, #f39c12);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+        }
+
+        .random-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(231, 76, 60, 0.4);
+            background: linear-gradient(45deg, #c0392b, #e67e22);
+        }
+
+        .random-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .placeholder {
+            color: #95a5a6;
+            font-style: italic;
+            text-align: center;
+            padding: 40px;
+            font-size: 1.1em;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin: 10px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .meal-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🥘 Trader Joe's Dinner Generator</h1>
+        <p class="subtitle">Quick, healthy, and delicious meals when inspiration runs low</p>
+        
+        <button class="random-btn" onclick="getRandomMeal()">Get Random Meal</button>
+        
+        <div id="meal-display">
+            <div class="placeholder">
+                Click the button above to discover your next delicious dinner!
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const meals = [
+            {
+                title: "Cauliflower Gnocchi with Spinach",
+                ingredients: [
+                    { item: "Cauliflower Gnocchi", price: "$2.99" },
+                    { item: "Organic Marinara Sauce", price: "$1.99" },
+                    { item: "Organic Baby Spinach", price: "$2.49" },
+                    { item: "Everything But The Bagel Seasoning", price: "$1.99" }
+                ],
+                prepTime: "15 minutes",
+                cost: "$2.40"
+            },
+            {
+                title: "Mahi Mahi with Jasmine Rice",
+                ingredients: [
+                    { item: "Mahi Mahi fillets (frozen)", price: "$7.99" },
+                    { item: "Organic Jasmine Rice (microwave)", price: "$2.99" },
+                    { item: "Stir Fry Vegetables (frozen)", price: "$2.49" },
+                    { item: "Soyaki Sauce", price: "$2.99" }
+                ],
+                prepTime: "18 minutes",
+                cost: "$4.10"
+            },
+            {
+                title: "Grass Fed Beef Pasta",
+                ingredients: [
+                    { item: "Grass Fed Ground Beef (93/7)", price: "$6.99/lb" },
+                    { item: "Organic Pasta", price: "$1.99" },
+                    { item: "Tomato Basil Marinara", price: "$1.99" },
+                    { item: "Frozen Organic Broccoli", price: "$2.49" }
+                ],
+                prepTime: "20 minutes",
+                cost: "$3.60"
+            },
+            {
+                title: "Chicken Tikka Masala Feast",
+                ingredients: [
+                    { item: "Chicken Tikka Masala (frozen)", price: "$3.99" },
+                    { item: "Microwave Brown Rice", price: "$2.99" },
+                    { item: "Naan bread (frozen)", price: "$2.49" },
+                    { item: "Steamed Edamame", price: "$1.99" }
+                ],
+                prepTime: "12 minutes",
+                cost: "$5.60"
+            },
+            {
+                title: "Argentinian Red Shrimp Stir Fry",
+                ingredients: [
+                    { item: "Argentinian Red Shrimp (frozen)", price: "$8.99" },
+                    { item: "Riced Cauliflower Stir Fry (frozen)", price: "$2.99" },
+                    { item: "Coconut Aminos", price: "$2.99" }
+                ],
+                prepTime: "15 minutes",
+                cost: "$3.70"
+            },
+            {
+                title: "Turkey Sweet Potato Bowl",
+                ingredients: [
+                    { item: "Organic Grass Fed Ground Turkey", price: "$5.99/lb" },
+                    { item: "Sweet Potato", price: "$1.99/bag" },
+                    { item: "Cruciferous Crunch Collection", price: "$2.99" },
+                    { item: "Tahini", price: "$3.99" }
+                ],
+                prepTime: "18 minutes",
+                cost: "$3.50"
+            },
+            {
+                title: "Chicken Thighs with Sugar Snap Peas",
+                ingredients: [
+                    { item: "Organic Free Range Chicken Thighs", price: "$5.99/lb" },
+                    { item: "Microwave Jasmine Rice", price: "$2.99" },
+                    { item: "Sugar Snap Peas", price: "$2.99" }
+                ],
+                prepTime: "22 minutes",
+                cost: "$3.80"
+            },
+            {
+                title: "Salmon Teriyaki Bowl",
+                ingredients: [
+                    { item: "Wild Alaskan Salmon (frozen)", price: "$8.99" },
+                    { item: "Organic Brown Rice (microwave)", price: "$2.99" },
+                    { item: "Asian Vegetable Medley (frozen)", price: "$2.49" },
+                    { item: "Island Soyaki Sauce", price: "$2.99" }
+                ],
+                prepTime: "16 minutes",
+                cost: "$4.30"
+            },
+            {
+                title: "Mandarin Orange Chicken",
+                ingredients: [
+                    { item: "Mandarin Orange Chicken (frozen)", price: "$4.99" },
+                    { item: "Vegetable Fried Rice (frozen)", price: "$2.99" },
+                    { item: "Steamed Broccoli (frozen)", price: "$1.99" }
+                ],
+                prepTime: "14 minutes",
+                cost: "$4.90"
+            },
+            {
+                title: "Butternut Squash Ravioli",
+                ingredients: [
+                    { item: "Butternut Squash Ravioli", price: "$3.49" },
+                    { item: "Sage & Browned Butter Sauce", price: "$2.99" },
+                    { item: "Organic Arugula", price: "$2.49" },
+                    { item: "Pine Nuts", price: "$5.99" }
+                ],
+                prepTime: "12 minutes",
+                cost: "$3.70"
+            },
+            {
+                title: "Mediterranean Chicken Wrap Bowl",
+                ingredients: [
+                    { item: "Mediterranean Chicken (pre-cooked)", price: "$4.99" },
+                    { item: "Mediterranean Style Orzo", price: "$3.99" },
+                    { item: "Cucumber (Persian)", price: "$2.49" },
+                    { item: "Tzatziki Sauce", price: "$3.99" }
+                ],
+                prepTime: "10 minutes",
+                cost: "$3.90"
+            },
+            {
+                title: "Korean Style Beef Bowl",
+                ingredients: [
+                    { item: "Korean Beef Short Ribs (frozen)", price: "$7.99" },
+                    { item: "Organic Jasmine Rice", price: "$2.99" },
+                    { item: "Kimchi", price: "$3.99" },
+                    { item: "Sesame Oil", price: "$3.99" }
+                ],
+                prepTime: "25 minutes",
+                cost: "$4.70"
+            },
+            {
+                title: "Eggplant Parmesan",
+                ingredients: [
+                    { item: "Breaded Eggplant Cutlets (frozen)", price: "$3.99" },
+                    { item: "Marinara Sauce", price: "$1.99" },
+                    { item: "Fresh Mozzarella", price: "$3.99" },
+                    { item: "Organic Pasta", price: "$1.99" }
+                ],
+                prepTime: "20 minutes",
+                cost: "$2.90"
+            },
+            {
+                title: "Thai Curry Vegetables",
+                ingredients: [
+                    { item: "Thai Red Curry Sauce", price: "$1.99" },
+                    { item: "Asian Stir Fry Vegetables (frozen)", price: "$2.49" },
+                    { item: "Coconut Milk", price: "$1.99" },
+                    { item: "Brown Rice (microwave)", price: "$2.99" }
+                ],
+                prepTime: "15 minutes",
+                cost: "$2.40"
+            },
+            {
+                title: "Pesto Gnocchi with Chicken",
+                ingredients: [
+                    { item: "Potato Gnocchi", price: "$1.99" },
+                    { item: "Pesto Sauce", price: "$3.99" },
+                    { item: "Grilled Chicken Strips", price: "$4.99" },
+                    { item: "Cherry Tomatoes", price: "$2.99" }
+                ],
+                prepTime: "13 minutes",
+                cost: "$3.50"
+            },
+            {
+                title: "Fish Tacos",
+                ingredients: [
+                    { item: "Mahi Mahi Burgers (frozen)", price: "$5.99" },
+                    { item: "Corn Tortillas", price: "$2.49" },
+                    { item: "Cilantro Tahini Dressing", price: "$3.99" },
+                    { item: "Coleslaw Mix", price: "$2.49" }
+                ],
+                prepTime: "16 minutes",
+                cost: "$3.70"
+            },
+            {
+                title: "Lemon Herb Chicken",
+                ingredients: [
+                    { item: "Lemon Herb Chicken Thighs", price: "$5.99" },
+                    { item: "Herb Seasoned Potatoes (frozen)", price: "$2.99" },
+                    { item: "Green Beans (frozen)", price: "$1.99" },
+                    { item: "Lemon", price: "$0.99" }
+                ],
+                prepTime: "28 minutes",
+                cost: "$2.90"
+            },
+            {
+                title: "Mushroom Risotto",
+                ingredients: [
+                    { item: "Mushroom & Herb Risotto (frozen)", price: "$3.99" },
+                    { item: "Roasted Red Peppers", price: "$2.99" },
+                    { item: "Baby Spinach", price: "$2.49" },
+                    { item: "Parmesan Cheese", price: "$4.99" }
+                ],
+                prepTime: "12 minutes",
+                cost: "$3.60"
+            },
+            {
+                title: "Carnitas Burrito Bowl",
+                ingredients: [
+                    { item: "Carnitas (refrigerated)", price: "$5.99" },
+                    { item: "Cilantro Lime Rice (frozen)", price: "$2.99" },
+                    { item: "Black Beans (canned)", price: "$0.99" },
+                    { item: "Chunky Salsa", price: "$2.99" }
+                ],
+                prepTime: "14 minutes",
+                cost: "$3.20"
+            },
+            {
+                title: "Stuffed Bell Peppers",
+                ingredients: [
+                    { item: "Bell Peppers (3-pack)", price: "$2.99" },
+                    { item: "Ground Turkey", price: "$5.99/lb" },
+                    { item: "Spanish Rice (frozen)", price: "$2.99" },
+                    { item: "Shredded Mexican Cheese", price: "$3.99" }
+                ],
+                prepTime: "35 minutes",
+                cost: "$4.00"
+            },
+            {
+                title: "Sesame Crusted Salmon",
+                ingredients: [
+                    { item: "Sesame Crusted Salmon", price: "$8.99" },
+                    { item: "Vegetable Fried Rice (frozen)", price: "$2.99" },
+                    { item: "Edamame (frozen)", price: "$1.99" },
+                    { item: "Ginger Scallion Sauce", price: "$2.99" }
+                ],
+                prepTime: "18 minutes",
+                cost: "$4.20"
+            },
+            {
+                title: "Quinoa Stuffed Acorn Squash",
+                ingredients: [
+                    { item: "Acorn Squash", price: "$1.99" },
+                    { item: "Quinoa Duo (frozen)", price: "$3.99" },
+                    { item: "Dried Cranberries", price: "$3.99" },
+                    { item: "Goat Cheese", price: "$3.99" }
+                ],
+                prepTime: "45 minutes",
+                cost: "$3.50"
+            },
+            {
+                title: "Chicken Sausage Pasta",
+                ingredients: [
+                    { item: "Chicken Sausage (any variety)", price: "$3.99" },
+                    { item: "Penne Pasta", price: "$1.99" },
+                    { item: "Roasted Red Pepper Sauce", price: "$2.99" },
+                    { item: "Zucchini", price: "$1.99" }
+                ],
+                prepTime: "17 minutes",
+                cost: "$2.70"
+            },
+            {
+                title: "Indian Butter Chicken",
+                ingredients: [
+                    { item: "Butter Chicken (frozen)", price: "$3.99" },
+                    { item: "Basmati Rice (microwave)", price: "$2.99" },
+                    { item: "Garlic Naan (frozen)", price: "$2.49" },
+                    { item: "Mango Chutney", price: "$2.99" }
+                ],
+                prepTime: "12 minutes",
+                cost: "$6.10"
+            },
+            {
+                title: "Zucchini Noodle Carbonara",
+                ingredients: [
+                    { item: "Zucchini Spirals (fresh)", price: "$2.99" },
+                    { item: "Pancetta", price: "$4.99" },
+                    { item: "Cage Free Eggs", price: "$3.99" },
+                    { item: "Parmesan Cheese", price: "$4.99" }
+                ],
+                prepTime: "15 minutes",
+                cost: "$4.20"
+            },
+            {
+                title: "Moroccan Chicken Tagine",
+                ingredients: [
+                    { item: "Moroccan Chicken (frozen)", price: "$4.99" },
+                    { item: "Couscous", price: "$2.99" },
+                    { item: "Dried Apricots", price: "$3.99" },
+                    { item: "Almonds", price: "$4.99" }
+                ],
+                prepTime: "20 minutes",
+                cost: "$4.20"
+            },
+            {
+                title: "Veggie Burger Power Bowl",
+                ingredients: [
+                    { item: "Quinoa Cowboy Veggie Burgers", price: "$3.99" },
+                    { item: "Power Greens", price: "$2.99" },
+                    { item: "Sweet Potato Fries (frozen)", price: "$2.99" },
+                    { item: "Green Goddess Dressing", price: "$3.99" }
+                ],
+                prepTime: "22 minutes",
+                cost: "$3.50"
+            },
+            {
+                title: "Garlic Shrimp Scampi",
+                ingredients: [
+                    { item: "Raw Shrimp (frozen)", price: "$6.99" },
+                    { item: "Angel Hair Pasta", price: "$1.99" },
+                    { item: "Garlic", price: "$1.99" },
+                    { item: "White Wine (cooking)", price: "$3.99" }
+                ],
+                prepTime: "16 minutes",
+                cost: "$3.70"
+            },
+            {
+                title: "Korean Bulgogi Bowl",
+                ingredients: [
+                    { item: "Bulgogi Beef (frozen)", price: "$7.99" },
+                    { item: "Brown Rice (microwave)", price: "$2.99" },
+                    { item: "Asian Vegetables (frozen)", price: "$2.49" },
+                    { item: "Sriracha", price: "$1.99" }
+                ],
+                prepTime: "15 minutes",
+                cost: "$3.90"
+            },
+            {
+                title: "Caprese Chicken Bake",
+                ingredients: [
+                    { item: "Chicken Breasts", price: "$6.99/lb" },
+                    { item: "Fresh Mozzarella", price: "$3.99" },
+                    { item: "Cherry Tomatoes", price: "$2.99" },
+                    { item: "Balsamic Glaze", price: "$2.99" }
+                ],
+                prepTime: "25 minutes",
+                cost: "$4.00"
+            },
+            {
+                title: "Chipotle Black Bean Quesadilla",
+                ingredients: [
+                    { item: "Flour Tortillas", price: "$2.49" },
+                    { item: "Black Bean & Corn Salsa", price: "$2.99" },
+                    { item: "Shredded Mexican Cheese", price: "$3.99" },
+                    { item: "Chipotle Sauce", price: "$2.99" }
+                ],
+                prepTime: "12 minutes",
+                cost: "$3.10"
+            },
+            {
+                title: "Lemon Garlic Cod",
+                ingredients: [
+                    { item: "Wild Cod Fillets (frozen)", price: "$7.99" },
+                    { item: "Lemon", price: "$0.99" },
+                    { item: "Roasted Vegetables (frozen)", price: "$2.99" },
+                    { item: "Herb De Provence", price: "$2.99" }
+                ],
+                prepTime: "20 minutes",
+                cost: "$3.50"
+            },
+            {
+                title: "Turkey Meatball Marinara",
+                ingredients: [
+                    { item: "Turkey Meatballs (frozen)", price: "$4.99" },
+                    { item: "Spaghetti", price: "$1.99" },
+                    { item: "Marinara Sauce", price: "$1.99" },
+                    { item: "Parmesan Cheese", price: "$4.99" }
+                ],
+                prepTime: "16 minutes",
+                cost: "$3.50"
+            },
+            {
+                title: "Asian Lettuce Wraps",
+                ingredients: [
+                    { item: "Ground Chicken", price: "$4.99/lb" },
+                    { item: "Butter Lettuce", price: "$2.99" },
+                    { item: "Asian Stir Fry Sauce", price: "$2.99" },
+                    { item: "Water Chestnuts", price: "$1.99" }
+                ],
+                prepTime: "14 minutes",
+                cost: "$3.00"
+            },
+            {
+                title: "Mediterranean Stuffed Eggplant",
+                ingredients: [
+                    { item: "Eggplant", price: "$2.99" },
+                    { item: "Ground Lamb", price: "$7.99/lb" },
+                    { item: "Feta Cheese", price: "$3.99" },
+                    { item: "Mediterranean Herb Seasoning", price: "$2.99" }
+                ],
+                prepTime: "35 minutes",
+                cost: "$4.50"
+            },
+            {
+                title: "Honey Walnut Shrimp",
+                ingredients: [
+                    { item: "Honey Walnut Shrimp (frozen)", price: "$7.99" },
+                    { item: "Jasmine Rice (microwave)", price: "$2.99" },
+                    { item: "Snow Peas", price: "$2.99" },
+                    { item: "Sesame Seeds", price: "$2.99" }
+                ],
+                prepTime: "12 minutes",
+                cost: "$4.00"
+            },
+            {
+                title: "Cuban Style Black Beans & Rice",
+                ingredients: [
+                    { item: "Cuban Style Black Beans", price: "$1.99" },
+                    { item: "Yellow Rice (frozen)", price: "$2.99" },
+                    { item: "Plantains", price: "$1.99" },
+                    { item: "Lime", price: "$0.99" }
+                ],
+                prepTime: "18 minutes",
+                cost: "$1.90"
+            },
+            {
+                title: "Balsamic Glazed Chicken",
+                ingredients: [
+                    { item: "Chicken Thighs", price: "$5.99/lb" },
+                    { item: "Balsamic Glaze", price: "$2.99" },
+                    { item: "Roasted Potatoes (frozen)", price: "$2.99" },
+                    { item: "Asparagus", price: "$2.99" }
+                ],
+                prepTime: "28 minutes",
+                cost: "$3.00"
+            },
+            {
+                title: "Cauliflower Fried Rice",
+                ingredients: [
+                    { item: "Cauliflower Rice (frozen)", price: "$2.99" },
+                    { item: "Scrambled Egg Whites", price: "$3.99" },
+                    { item: "Frozen Peas & Carrots", price: "$1.99" },
+                    { item: "Soy Sauce", price: "$1.99" }
+                ],
+                prepTime: "12 minutes",
+                cost: "$2.70"
+            },
+            {
+                title: "Greek Style Chicken Bowl",
+                ingredients: [
+                    { item: "Greek Style Chicken (frozen)", price: "$4.99" },
+                    { item: "Mediterranean Quinoa", price: "$3.99" },
+                    { item: "Cucumber", price: "$1.99" },
+                    { item: "Tzatziki", price: "$3.99" }
+                ],
+                prepTime: "15 minutes",
+                cost: "$3.70"
+            },
+            {
+                title: "Teriyaki Chicken Rice Bowl",
+                ingredients: [
+                    { item: "Teriyaki Chicken (frozen)", price: "$4.99" },
+                    { item: "Brown Rice (microwave)", price: "$2.99" },
+                    { item: "Broccoli Slaw", price: "$2.49" },
+                    { item: "Sesame Seeds", price: "$2.99" }
+                ],
+                prepTime: "13 minutes",
+                cost: "$3.30"
+            },
+            {
+                title: "Stuffed Portobello Mushrooms",
+                ingredients: [
+                    { item: "Large Portobello Caps", price: "$3.99" },
+                    { item: "Italian Sausage", price: "$3.99" },
+                    { item: "Marinara Sauce", price: "$1.99" },
+                    { item: "Mozzarella Cheese", price: "$3.99" }
+                ],
+                prepTime: "22 minutes",
+                cost: "$3.50"
+            },
+            {
+                title: "Coconut Curry Chicken",
+                ingredients: [
+                    { item: "Chicken Curry (frozen)", price: "$4.99" },
+                    { item: "Coconut Rice (frozen)", price: "$2.99" },
+                    { item: "Thai Basil", price: "$1.99" },
+                    { item: "Lime", price: "$0.99" }
+                ],
+                prepTime: "14 minutes",
+                cost: "$5.00"
+            },
+            {
+                title: "Poke Bowl",
+                ingredients: [
+                    { item: "Ahi Tuna (frozen)", price: "$8.99" },
+                    { item: "Sushi Rice (frozen)", price: "$2.99" },
+                    { item: "Edamame", price: "$1.99" },
+                    { item: "Spicy Peanut Sauce", price: "$2.99" }
+                ],
+                prepTime: "12 minutes",
+                cost: "$4.20"
+            },
+            {
+                title: "BBQ Pulled Pork Sweet Potato",
+                ingredients: [
+                    { item: "BBQ Pulled Pork", price: "$4.99" },
+                    { item: "Sweet Potatoes", price: "$1.99/bag" },
+                    { item: "Coleslaw Mix", price: "$2.49" },
+                    { item: "BBQ Sauce", price: "$2.99" }
+                ],
+                prepTime: "25 minutes",
+                cost: "$3.00"
+            },
+            {
+                title: "Spanakopita Style Chicken",
+                ingredients: [
+                    { item: "Chicken Breasts", price: "$6.99/lb" },
+                    { item: "Spinach & Feta Cheese Filling", price: "$3.99" },
+                    { item: "Phyllo Dough (frozen)", price: "$2.99" },
+                    { item: "Olive Oil", price: "$3.99" }
+                ],
+                prepTime: "30 minutes",
+                cost: "$4.50"
+            },
+            {
+                title: "Chili Lime Cod Tacos",
+                ingredients: [
+                    { item: "Chili Lime Fish Fillets", price: "$7.99" },
+                    { item: "Corn Tortillas", price: "$2.49" },
+                    { item: "Avocado", price: "$2.99" },
+                    { item: "Cilantro Lime Crema", price: "$3.99" }
+                ],
+                prepTime: "15 minutes",
+                cost: "$4.30"
+            },
+            {
+                title: "Mushroom & Truffle Flatbread",
+                ingredients: [
+                    { item: "Naan Flatbread", price: "$2.49" },
+                    { item: "Mushroom Medley", price: "$2.99" },
+                    { item: "Truffle Cheese", price: "$4.99" },
+                    { item: "Arugula", price: "$2.49" }
+                ],
+                prepTime: "18 minutes",
+                cost: "$3.20"
+            },
+            {
+                title: "Jerk Chicken with Plantains",
+                ingredients: [
+                    { item: "Jerk Chicken Thighs", price: "$5.99" },
+                    { item: "Plantains", price: "$1.99" },
+                    { item: "Coconut Rice (frozen)", price: "$2.99" },
+                    { item: "Mango Salsa", price: "$3.99" }
+                ],
+                prepTime: "20 minutes",
+                cost: "$3.70"
+            }
+        ];
+
+        function getRandomMeal() {
+            const mealDisplay = document.getElementById('meal-display');
+            const randomIndex = Math.floor(Math.random() * meals.length);
+            const meal = meals[randomIndex];
+            
+            const ingredientsList = meal.ingredients.map(ingredient => 
+                `<li><span>${ingredient.item}</span><span class="price">${ingredient.price}</span></li>`
+            ).join('');
+            
+            mealDisplay.innerHTML = `
+                <div class="meal-card show">
+                    <h2 class="meal-title">${meal.title}</h2>
+                    <ul class="ingredients">
+                        ${ingredientsList}
+                    </ul>
+                    <div class="meal-info">
+                        <div class="prep-time">⏱️ ${meal.prepTime}</div>
+                        <div class="cost">💰 Estimated Cost: ${meal.cost}</div>
+                    </div>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
