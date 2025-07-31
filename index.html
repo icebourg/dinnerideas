@@ -273,6 +273,54 @@
             text-align: center;
         }
 
+        .share-btn {
+            background: linear-gradient(45deg, #27ae60, #2ecc71);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 0.9em;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 3px 10px rgba(39, 174, 96, 0.3);
+            margin-top: 15px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .share-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(39, 174, 96, 0.4);
+            background: linear-gradient(45deg, #229954, #27ae60);
+        }
+
+        .share-btn:active {
+            transform: translateY(0);
+        }
+
+        .share-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #27ae60;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 2000;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+            font-weight: 600;
+        }
+
+        .share-notification.show {
+            transform: translateX(0);
+        }
+
         .placeholder {
             color: #95a5a6;
             font-style: italic;
@@ -1490,11 +1538,21 @@
         function getRandomMeal() {
             const randomIndex = Math.floor(Math.random() * meals.length);
             const meal = meals[randomIndex];
-            displayMeal(meal);
+            displayMeal(meal, randomIndex);
+            
+            // Update URL without page reload
+            const url = new URL(window.location);
+            url.searchParams.set('recipe', randomIndex);
+            window.history.pushState({}, '', url);
         }
 
-        function displayMeal(meal) {
+        function displayMeal(meal, mealIndex = null) {
             const mealDisplay = document.getElementById('meal-display');
+            
+            // Find the index if not provided
+            if (mealIndex === null) {
+                mealIndex = meals.findIndex(m => m.title === meal.title);
+            }
             
             let ingredientsList = '';
             meal.ingredients.forEach(ingredient => {
@@ -1515,6 +1573,9 @@
                         <span class="prep-time">⏱️ ${meal.prepTime}</span>
                         <span class="cost">💰 ${meal.cost} per serving</span>
                     </div>
+                    <button class="share-btn" onclick="shareRecipe(${mealIndex})">
+                        🔗 Share Recipe
+                    </button>
                 </div>
             `;
             
@@ -1548,14 +1609,80 @@
 
         function selectRecipe(index) {
             const meal = meals[index];
-            displayMeal(meal);
+            displayMeal(meal, index);
             closeRecipeModal();
+            
+            // Update URL without page reload
+            const url = new URL(window.location);
+            url.searchParams.set('recipe', index);
+            window.history.pushState({}, '', url);
         }
 
         function closeRecipeModal() {
             const modal = document.getElementById('recipe-modal');
             modal.style.display = 'none';
         }
+
+        function shareRecipe(index) {
+            const url = new URL(window.location);
+            url.searchParams.set('recipe', index);
+            const shareUrl = url.toString();
+            
+            // Copy to clipboard
+            navigator.clipboard.writeText(shareUrl).then(() => {
+                showShareNotification('Recipe link copied to clipboard!');
+            }).catch(() => {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = shareUrl;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                showShareNotification('Recipe link copied to clipboard!');
+            });
+        }
+
+        function showShareNotification(message) {
+            // Remove existing notification if any
+            const existing = document.querySelector('.share-notification');
+            if (existing) {
+                existing.remove();
+            }
+            
+            const notification = document.createElement('div');
+            notification.className = 'share-notification';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            // Show notification
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 100);
+            
+            // Hide notification after 3 seconds
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.remove();
+                    }
+                }, 300);
+            }, 3000);
+        }
+
+        function loadRecipeFromUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const recipeIndex = urlParams.get('recipe');
+            
+            if (recipeIndex !== null && recipeIndex >= 0 && recipeIndex < meals.length) {
+                const meal = meals[parseInt(recipeIndex)];
+                displayMeal(meal, parseInt(recipeIndex));
+            }
+        }
+
+        // Load recipe from URL on page load
+        window.addEventListener('DOMContentLoaded', loadRecipeFromUrl);
 
         // Close modal when clicking outside of it
         window.onclick = function(event) {
