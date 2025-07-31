@@ -26,7 +26,7 @@
             backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 40px;
-            max-width: 600px;
+            max-width: 700px;
             width: 100%;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
             text-align: center;
@@ -60,6 +60,8 @@
             opacity: 0;
             transform: translateY(20px);
             transition: all 0.5s ease;
+            max-height: 75vh;
+            overflow-y: auto;
         }
 
         .meal-card.show {
@@ -95,6 +97,26 @@
         .price {
             color: #27ae60;
             font-weight: 600;
+        }
+
+        .recipe {
+            background: #e8f5e8;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 3px solid #27ae60;
+        }
+
+        .recipe-title {
+            color: #27ae60;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .recipe-steps {
+            color: #2c3e50;
+            line-height: 1.6;
         }
 
         .meal-info {
@@ -191,7 +213,8 @@
                     { item: "Everything But The Bagel Seasoning", price: "$1.99" }
                 ],
                 prepTime: "15 minutes",
-                cost: "$2.40"
+                cost: "$2.40",
+                recipe: "Heat olive oil in large pan over medium heat. Add gnocchi directly from frozen, cook 8-10 minutes until golden. Add marinara sauce and simmer 2 minutes. Stir in spinach until wilted. Season with Everything Bagel seasoning and serve."
             },
             {
                 title: "Mahi Mahi with Jasmine Rice",
@@ -202,7 +225,8 @@
                     { item: "Soyaki Sauce", price: "$2.99" }
                 ],
                 prepTime: "18 minutes",
-                cost: "$4.10"
+                cost: "$4.10",
+                recipe: "Thaw mahi mahi and season with salt and pepper. Heat oil in pan and cook fish 4-5 minutes per side. Microwave rice according to package. Cook frozen vegetables in same pan with soyaki sauce for 3-4 minutes. Serve fish over rice with vegetables."
             },
             {
                 title: "Grass Fed Beef Pasta",
@@ -213,7 +237,8 @@
                     { item: "Frozen Organic Broccoli", price: "$2.49" }
                 ],
                 prepTime: "20 minutes",
-                cost: "$3.60"
+                cost: "$3.60",
+                recipe: "Cook pasta according to package directions. Brown ground beef in large pan, breaking up as it cooks. Add marinara sauce and simmer 5 minutes. Steam broccoli in microwave for 3 minutes. Drain pasta, mix with beef sauce, and serve with broccoli on the side."
             },
             {
                 title: "Chicken Tikka Masala Feast",
@@ -224,7 +249,8 @@
                     { item: "Steamed Edamame", price: "$1.99" }
                 ],
                 prepTime: "12 minutes",
-                cost: "$5.60"
+                cost: "$5.60",
+                recipe: "Heat chicken tikka masala according to package instructions. Microwave rice and heat naan in toaster oven. Steam edamame for 3 minutes in microwave with a splash of water. Serve tikka masala over rice with warm naan and edamame on the side."
             },
             {
                 title: "Argentinian Red Shrimp Stir Fry",
@@ -234,7 +260,8 @@
                     { item: "Coconut Aminos", price: "$2.99" }
                 ],
                 prepTime: "15 minutes",
-                cost: "$3.70"
+                cost: "$3.70",
+                recipe: "Thaw shrimp and pat dry. Heat oil in large pan or wok over high heat. Cook shrimp 2-3 minutes per side until pink. Remove shrimp, add frozen cauliflower rice to pan and stir fry 5-6 minutes. Add coconut aminos and shrimp back to pan, toss and serve."
             },
             {
                 title: "Turkey Sweet Potato Bowl",
@@ -245,7 +272,8 @@
                     { item: "Tahini", price: "$3.99" }
                 ],
                 prepTime: "18 minutes",
-                cost: "$3.50"
+                cost: "$3.50",
+                recipe: "Pierce sweet potato and microwave 6-8 minutes until tender. Brown ground turkey in pan with salt and pepper. Prepare crunch collection salad according to package. Slice open sweet potato, top with turkey and salad mix. Drizzle with tahini thinned with water."
             },
             {
                 title: "Chicken Thighs with Sugar Snap Peas",
@@ -255,7 +283,8 @@
                     { item: "Sugar Snap Peas", price: "$2.99" }
                 ],
                 prepTime: "22 minutes",
-                cost: "$3.80"
+                cost: "$3.80",
+                recipe: "Season chicken thighs with salt, pepper, and garlic powder. Heat oil in oven-safe pan and sear thighs skin-side down 5 minutes, flip and bake at 400°F for 15 minutes. Microwave rice. Sauté snap peas 3-4 minutes until crisp-tender. Serve together."
             },
             {
                 title: "Salmon Teriyaki Bowl",
@@ -266,7 +295,8 @@
                     { item: "Island Soyaki Sauce", price: "$2.99" }
                 ],
                 prepTime: "16 minutes",
-                cost: "$4.30"
+                cost: "$4.30",
+                recipe: "Thaw salmon and brush with soyaki sauce. Bake at 400°F for 12-15 minutes. Microwave rice and steam vegetables according to package directions. Flake salmon and serve over rice with vegetables, drizzled with extra soyaki sauce."
             },
             {
                 title: "Mandarin Orange Chicken",
@@ -276,7 +306,8 @@
                     { item: "Steamed Broccoli (frozen)", price: "$1.99" }
                 ],
                 prepTime: "14 minutes",
-                cost: "$4.90"
+                cost: "$4.90",
+                recipe: "Cook orange chicken according to package instructions in oven. Microwave fried rice and broccoli separately. Arrange on plate with chicken on top of rice and broccoli on the side. Drizzle any extra orange sauce over everything."
             },
             {
                 title: "Butternut Squash Ravioli",
@@ -287,219 +318,215 @@
                     { item: "Pine Nuts", price: "$5.99" }
                 ],
                 prepTime: "12 minutes",
-                cost: "$3.70"
+                cost: "$3.70",
+                recipe: "Boil salted water and cook ravioli 3-4 minutes until they float. Heat butter sauce in large pan. Drain ravioli and toss with sauce. Serve over bed of arugula and top with toasted pine nuts."
             },
             {
-                title: "Mediterranean Chicken Wrap Bowl",
+                title: "Lemon Pepper Cod",
                 ingredients: [
-                    { item: "Mediterranean Chicken (pre-cooked)", price: "$4.99" },
-                    { item: "Mediterranean Style Orzo", price: "$3.99" },
-                    { item: "Cucumber (Persian)", price: "$2.49" },
-                    { item: "Tzatziki Sauce", price: "$3.99" }
-                ],
-                prepTime: "10 minutes",
-                cost: "$3.90"
-            },
-            {
-                title: "Korean Style Beef Bowl",
-                ingredients: [
-                    { item: "Korean Beef Short Ribs (frozen)", price: "$7.99" },
-                    { item: "Organic Jasmine Rice", price: "$2.99" },
-                    { item: "Kimchi", price: "$3.99" },
-                    { item: "Sesame Oil", price: "$3.99" }
+                    { item: "Wild Cod Fillets", price: "$7.99" },
+                    { item: "Lemon Pepper Seasoning", price: "$2.99" },
+                    { item: "Green Beans (frozen)", price: "$1.99" },
+                    { item: "Herb Roasted Potatoes (frozen)", price: "$2.99" }
                 ],
                 prepTime: "25 minutes",
-                cost: "$4.70"
+                cost: "$4.00",
+                recipe: "Season cod with lemon pepper and bake at 400°F for 15 minutes. Roast potatoes according to package directions. Steam green beans 4-5 minutes until tender. Serve cod with potatoes and green beans, garnish with lemon wedges."
             },
             {
-                title: "Eggplant Parmesan",
+                title: "Thai Green Curry",
                 ingredients: [
-                    { item: "Breaded Eggplant Cutlets (frozen)", price: "$3.99" },
-                    { item: "Marinara Sauce", price: "$1.99" },
-                    { item: "Fresh Mozzarella", price: "$3.99" },
-                    { item: "Organic Pasta", price: "$1.99" }
-                ],
-                prepTime: "20 minutes",
-                cost: "$2.90"
-            },
-            {
-                title: "Thai Curry Vegetables",
-                ingredients: [
-                    { item: "Thai Red Curry Sauce", price: "$1.99" },
-                    { item: "Asian Stir Fry Vegetables (frozen)", price: "$2.49" },
+                    { item: "Thai Green Curry Simmer Sauce", price: "$1.99" },
                     { item: "Coconut Milk", price: "$1.99" },
-                    { item: "Brown Rice (microwave)", price: "$2.99" }
-                ],
-                prepTime: "15 minutes",
-                cost: "$2.40"
-            },
-            {
-                title: "Pesto Gnocchi with Chicken",
-                ingredients: [
-                    { item: "Potato Gnocchi", price: "$1.99" },
-                    { item: "Pesto Sauce", price: "$3.99" },
-                    { item: "Grilled Chicken Strips", price: "$4.99" },
-                    { item: "Cherry Tomatoes", price: "$2.99" }
-                ],
-                prepTime: "13 minutes",
-                cost: "$3.50"
-            },
-            {
-                title: "Fish Tacos",
-                ingredients: [
-                    { item: "Mahi Mahi Burgers (frozen)", price: "$5.99" },
-                    { item: "Corn Tortillas", price: "$2.49" },
-                    { item: "Cilantro Tahini Dressing", price: "$3.99" },
-                    { item: "Coleslaw Mix", price: "$2.49" }
+                    { item: "Chicken Breast Strips", price: "$4.99" },
+                    { item: "Asian Stir Fry Vegetables", price: "$2.49" }
                 ],
                 prepTime: "16 minutes",
-                cost: "$3.70"
+                cost: "$2.80",
+                recipe: "Cook chicken strips in large pan until done. Add frozen vegetables and stir fry 3 minutes. Pour in curry sauce and coconut milk, simmer 8-10 minutes. Serve over rice with fresh herbs if available."
             },
             {
-                title: "Lemon Herb Chicken",
+                title: "Mushroom Truffle Pizza",
                 ingredients: [
-                    { item: "Lemon Herb Chicken Thighs", price: "$5.99" },
-                    { item: "Herb Seasoned Potatoes (frozen)", price: "$2.99" },
-                    { item: "Green Beans (frozen)", price: "$1.99" },
-                    { item: "Lemon", price: "$0.99" }
+                    { item: "Pizza Dough", price: "$1.99" },
+                    { item: "Truffle Mushroom Sauce", price: "$3.99" },
+                    { item: "Mushroom Medley", price: "$2.99" },
+                    { item: "Fontina Cheese", price: "$4.99" }
                 ],
-                prepTime: "28 minutes",
-                cost: "$2.90"
+                prepTime: "20 minutes",
+                cost: "$3.50",
+                recipe: "Preheat oven to 450°F. Stretch dough on oiled pan. Spread truffle sauce, top with sliced mushrooms and cheese. Bake 12-15 minutes until crust is golden and cheese is bubbly. Cool 2 minutes before slicing."
+            },
+            {
+                title: "Korean BBQ Tacos",
+                ingredients: [
+                    { item: "Korean BBQ Short Ribs", price: "$7.99" },
+                    { item: "Corn Tortillas", price: "$2.49" },
+                    { item: "Asian Slaw Mix", price: "$2.99" },
+                    { item: "Sriracha", price: "$1.99" }
+                ],
+                prepTime: "18 minutes",
+                cost: "$3.90",
+                recipe: "Cook short ribs according to package directions. Warm tortillas in dry pan. Mix slaw with a splash of rice vinegar. Slice ribs and serve in tortillas topped with slaw and sriracha drizzle."
+            },
+            {
+                title: "Mediterranean Stuffed Peppers",
+                ingredients: [
+                    { item: "Bell Peppers (3-pack)", price: "$2.99" },
+                    { item: "Mediterranean Quinoa Salad", price: "$3.99" },
+                    { item: "Feta Cheese", price: "$3.99" },
+                    { item: "Kalamata Olives", price: "$2.99" }
+                ],
+                prepTime: "30 minutes",
+                cost: "$3.50",
+                recipe: "Cut tops off peppers and remove seeds. Mix quinoa salad with crumbled feta and chopped olives. Stuff peppers with mixture. Bake at 375°F for 25 minutes until peppers are tender."
+            },
+            {
+                title: "Shrimp Pad Thai",
+                ingredients: [
+                    { item: "Pad Thai Noodles", price: "$2.99" },
+                    { item: "Raw Shrimp (frozen)", price: "$6.99" },
+                    { item: "Pad Thai Sauce", price: "$2.99" },
+                    { item: "Asian Vegetable Mix", price: "$2.49" }
+                ],
+                prepTime: "15 minutes",
+                cost: "$4.10",
+                recipe: "Soak noodles in hot water until soft. Thaw and cook shrimp 2-3 minutes per side. Stir fry vegetables 2 minutes. Add drained noodles, sauce, and shrimp to pan. Toss everything together and cook 2-3 minutes more."
+            },
+            {
+                title: "Beef and Broccoli",
+                ingredients: [
+                    { item: "Beef Stir Fry Strips", price: "$5.99" },
+                    { item: "Broccoli Florets", price: "$2.99" },
+                    { item: "Teriyaki Sauce", price: "$2.99" },
+                    { item: "Brown Rice (microwave)", price: "$2.99" }
+                ],
+                prepTime: "14 minutes",
+                cost: "$3.70",
+                recipe: "Heat oil in wok or large pan over high heat. Stir fry beef 3-4 minutes until browned. Add broccoli and cook 3 minutes. Pour in teriyaki sauce and stir 1 minute. Serve over microwaved rice."
+            },
+            {
+                title: "Chicken Shawarma Bowl",
+                ingredients: [
+                    { item: "Shawarma Chicken Thighs", price: "$5.99" },
+                    { item: "Mediterranean Rice", price: "$2.99" },
+                    { item: "Tzatziki", price: "$3.99" },
+                    { item: "Persian Cucumbers", price: "$2.49" }
+                ],
+                prepTime: "20 minutes",
+                cost: "$3.90",
+                recipe: "Bake chicken thighs at 400°F for 18-20 minutes. Heat rice according to package. Slice cucumbers. Slice chicken and serve over rice with cucumber slices and a dollop of tzatziki."
+            },
+            {
+                title: "Vegetable Curry",
+                ingredients: [
+                    { item: "Indian Fare Vegetable Curry", price: "$3.99" },
+                    { item: "Basmati Rice", price: "$2.99" },
+                    { item: "Garlic Naan", price: "$2.49" },
+                    { item: "Plain Greek Yogurt", price: "$4.99" }
+                ],
+                prepTime: "12 minutes",
+                cost: "$3.60",
+                recipe: "Heat curry according to package instructions. Cook rice in rice cooker or stovetop. Warm naan in toaster oven. Serve curry over rice with naan on the side and a dollop of yogurt to cool the heat."
+            },
+            {
+                title: "Pesto Salmon",
+                ingredients: [
+                    { item: "Atlantic Salmon Fillets", price: "$8.99" },
+                    { item: "Pesto Genovese", price: "$3.99" },
+                    { item: "Cherry Tomatoes", price: "$2.99" },
+                    { item: "Asparagus", price: "$2.99" }
+                ],
+                prepTime: "18 minutes",
+                cost: "$4.70",
+                recipe: "Brush salmon with pesto and bake at 400°F for 12-15 minutes. Roast halved cherry tomatoes and asparagus with olive oil at same temperature for 10 minutes. Serve salmon with roasted vegetables."
+            },
+            {
+                title: "Turkey Meatball Soup",
+                ingredients: [
+                    { item: "Turkey Meatballs (frozen)", price: "$4.99" },
+                    { item: "Organic Vegetable Broth", price: "$2.99" },
+                    { item: "Ditalini Pasta", price: "$1.99" },
+                    { item: "Baby Spinach", price: "$2.49" }
+                ],
+                prepTime: "16 minutes",
+                cost: "$3.10",
+                recipe: "Bring broth to boil in large pot. Add meatballs and cook 8 minutes. Add pasta and cook according to package directions. Stir in spinach until wilted. Season with salt, pepper, and Italian herbs."
+            },
+            {
+                title: "Fish and Chips",
+                ingredients: [
+                    { item: "Beer Battered Cod", price: "$6.99" },
+                    { item: "Oven Fries", price: "$2.99" },
+                    { item: "Coleslaw Mix", price: "$2.49" },
+                    { item: "Tartar Sauce", price: "$2.99" }
+                ],
+                prepTime: "25 minutes",
+                cost: "$4.10",
+                recipe: "Bake cod and fries according to package directions. Mix coleslaw with a splash of vinegar and mayo. Serve fish with fries, coleslaw, and tartar sauce for dipping."
+            },
+            {
+                title: "Chicken Fajita Bowl",
+                ingredients: [
+                    { item: "Fajita Chicken Strips", price: "$4.99" },
+                    { item: "Cilantro Lime Rice", price: "$2.99" },
+                    { item: "Pepper & Onion Mix", price: "$2.99" },
+                    { item: "Guacamole", price: "$3.99" }
+                ],
+                prepTime: "15 minutes",
+                cost: "$3.80",
+                recipe: "Heat chicken strips in pan according to package. Sauté pepper and onion mix until tender. Heat rice in microwave. Serve chicken and vegetables over rice topped with guacamole."
             },
             {
                 title: "Mushroom Risotto",
                 ingredients: [
-                    { item: "Mushroom & Herb Risotto (frozen)", price: "$3.99" },
-                    { item: "Roasted Red Peppers", price: "$2.99" },
-                    { item: "Baby Spinach", price: "$2.49" },
-                    { item: "Parmesan Cheese", price: "$4.99" }
-                ],
-                prepTime: "12 minutes",
-                cost: "$3.60"
-            },
-            {
-                title: "Carnitas Burrito Bowl",
-                ingredients: [
-                    { item: "Carnitas (refrigerated)", price: "$5.99" },
-                    { item: "Cilantro Lime Rice (frozen)", price: "$2.99" },
-                    { item: "Black Beans (canned)", price: "$0.99" },
-                    { item: "Chunky Salsa", price: "$2.99" }
+                    { item: "Mushroom Risotto (frozen)", price: "$3.99" },
+                    { item: "Mixed Mushrooms", price: "$2.99" },
+                    { item: "Parmesan Cheese", price: "$4.99" },
+                    { item: "Baby Arugula", price: "$2.49" }
                 ],
                 prepTime: "14 minutes",
-                cost: "$3.20"
+                cost: "$3.60",
+                recipe: "Heat risotto according to package. Sauté sliced mushrooms until golden. Stir mushrooms into risotto with grated parmesan. Serve over bed of arugula."
             },
             {
-                title: "Stuffed Bell Peppers",
+                title: "BBQ Chicken Pizza",
                 ingredients: [
-                    { item: "Bell Peppers (3-pack)", price: "$2.99" },
-                    { item: "Ground Turkey", price: "$5.99/lb" },
-                    { item: "Spanish Rice (frozen)", price: "$2.99" },
-                    { item: "Shredded Mexican Cheese", price: "$3.99" }
-                ],
-                prepTime: "35 minutes",
-                cost: "$4.00"
-            },
-            {
-                title: "Sesame Crusted Salmon",
-                ingredients: [
-                    { item: "Sesame Crusted Salmon", price: "$8.99" },
-                    { item: "Vegetable Fried Rice (frozen)", price: "$2.99" },
-                    { item: "Edamame (frozen)", price: "$1.99" },
-                    { item: "Ginger Scallion Sauce", price: "$2.99" }
-                ],
-                prepTime: "18 minutes",
-                cost: "$4.20"
-            },
-            {
-                title: "Quinoa Stuffed Acorn Squash",
-                ingredients: [
-                    { item: "Acorn Squash", price: "$1.99" },
-                    { item: "Quinoa Duo (frozen)", price: "$3.99" },
-                    { item: "Dried Cranberries", price: "$3.99" },
-                    { item: "Goat Cheese", price: "$3.99" }
-                ],
-                prepTime: "45 minutes",
-                cost: "$3.50"
-            },
-            {
-                title: "Chicken Sausage Pasta",
-                ingredients: [
-                    { item: "Chicken Sausage (any variety)", price: "$3.99" },
-                    { item: "Penne Pasta", price: "$1.99" },
-                    { item: "Roasted Red Pepper Sauce", price: "$2.99" },
-                    { item: "Zucchini", price: "$1.99" }
-                ],
-                prepTime: "17 minutes",
-                cost: "$2.70"
-            },
-            {
-                title: "Indian Butter Chicken",
-                ingredients: [
-                    { item: "Butter Chicken (frozen)", price: "$3.99" },
-                    { item: "Basmati Rice (microwave)", price: "$2.99" },
-                    { item: "Garlic Naan (frozen)", price: "$2.49" },
-                    { item: "Mango Chutney", price: "$2.99" }
-                ],
-                prepTime: "12 minutes",
-                cost: "$6.10"
-            },
-            {
-                title: "Zucchini Noodle Carbonara",
-                ingredients: [
-                    { item: "Zucchini Spirals (fresh)", price: "$2.99" },
-                    { item: "Pancetta", price: "$4.99" },
-                    { item: "Cage Free Eggs", price: "$3.99" },
-                    { item: "Parmesan Cheese", price: "$4.99" }
-                ],
-                prepTime: "15 minutes",
-                cost: "$4.20"
-            },
-            {
-                title: "Moroccan Chicken Tagine",
-                ingredients: [
-                    { item: "Moroccan Chicken (frozen)", price: "$4.99" },
-                    { item: "Couscous", price: "$2.99" },
-                    { item: "Dried Apricots", price: "$3.99" },
-                    { item: "Almonds", price: "$4.99" }
+                    { item: "Pizza Dough", price: "$1.99" },
+                    { item: "BBQ Sauce", price: "$2.99" },
+                    { item: "Grilled Chicken Strips", price: "$4.99" },
+                    { item: "Red Onion", price: "$1.99" }
                 ],
                 prepTime: "20 minutes",
-                cost: "$4.20"
+                cost: "$2.90",
+                recipe: "Stretch dough on oiled pan. Spread BBQ sauce, top with chicken pieces and thinly sliced red onion. Bake at 450°F for 12-15 minutes until crust is golden. Cool before slicing."
             },
             {
-                title: "Veggie Burger Power Bowl",
+                title: "Greek Chicken Salad",
                 ingredients: [
-                    { item: "Quinoa Cowboy Veggie Burgers", price: "$3.99" },
-                    { item: "Power Greens", price: "$2.99" },
-                    { item: "Sweet Potato Fries (frozen)", price: "$2.99" },
-                    { item: "Green Goddess Dressing", price: "$3.99" }
+                    { item: "Grilled Chicken Strips", price: "$4.99" },
+                    { item: "Greek Salad Kit", price: "$3.99" },
+                    { item: "Pita Bread", price: "$2.49" },
+                    { item: "Hummus", price: "$2.99" }
                 ],
-                prepTime: "22 minutes",
-                cost: "$3.50"
+                prepTime: "8 minutes",
+                cost: "$3.70",
+                recipe: "Prepare salad kit according to package. Top with warmed chicken strips. Serve with warmed pita bread and hummus on the side for dipping."
             },
             {
-                title: "Garlic Shrimp Scampi",
+                title: "Teriyaki Beef Rice Bowl",
                 ingredients: [
-                    { item: "Raw Shrimp (frozen)", price: "$6.99" },
-                    { item: "Angel Hair Pasta", price: "$1.99" },
-                    { item: "Garlic", price: "$1.99" },
-                    { item: "White Wine (cooking)", price: "$3.99" }
+                    { item: "Teriyaki Beef (frozen)", price: "$6.99" },
+                    { item: "Jasmine Rice", price: "$2.99" },
+                    { item: "Edamame", price: "$1.99" },
+                    { item: "Sesame Seeds", price: "$2.99" }
                 ],
                 prepTime: "16 minutes",
-                cost: "$3.70"
+                cost: "$3.50",
+                recipe: "Cook teriyaki beef according to package. Heat rice and steam edamame. Serve beef over rice with edamame on the side. Sprinkle with sesame seeds."
             },
             {
-                title: "Korean Bulgogi Bowl",
-                ingredients: [
-                    { item: "Bulgogi Beef (frozen)", price: "$7.99" },
-                    { item: "Brown Rice (microwave)", price: "$2.99" },
-                    { item: "Asian Vegetables (frozen)", price: "$2.49" },
-                    { item: "Sriracha", price: "$1.99" }
-                ],
-                prepTime: "15 minutes",
-                cost: "$3.90"
-            },
-            {
-                title: "Caprese Chicken Bake",
+               title: "Caprese Chicken",
                 ingredients: [
                     { item: "Chicken Breasts", price: "$6.99/lb" },
                     { item: "Fresh Mozzarella", price: "$3.99" },
@@ -507,40 +534,32 @@
                     { item: "Balsamic Glaze", price: "$2.99" }
                 ],
                 prepTime: "25 minutes",
-                cost: "$4.00"
+                cost: "$4.00",
+                recipe: "Season chicken and bake at 400°F for 20 minutes. Top with sliced mozzarella and halved cherry tomatoes, bake 5 more minutes. Drizzle with balsamic glaze before serving."
             },
             {
-                title: "Chipotle Black Bean Quesadilla",
+                title: "Shrimp Scampi",
                 ingredients: [
-                    { item: "Flour Tortillas", price: "$2.49" },
-                    { item: "Black Bean & Corn Salsa", price: "$2.99" },
-                    { item: "Shredded Mexican Cheese", price: "$3.99" },
-                    { item: "Chipotle Sauce", price: "$2.99" }
-                ],
-                prepTime: "12 minutes",
-                cost: "$3.10"
-            },
-            {
-                title: "Lemon Garlic Cod",
-                ingredients: [
-                    { item: "Wild Cod Fillets (frozen)", price: "$7.99" },
-                    { item: "Lemon", price: "$0.99" },
-                    { item: "Roasted Vegetables (frozen)", price: "$2.99" },
-                    { item: "Herb De Provence", price: "$2.99" }
-                ],
-                prepTime: "20 minutes",
-                cost: "$3.50"
-            },
-            {
-                title: "Turkey Meatball Marinara",
-                ingredients: [
-                    { item: "Turkey Meatballs (frozen)", price: "$4.99" },
-                    { item: "Spaghetti", price: "$1.99" },
-                    { item: "Marinara Sauce", price: "$1.99" },
-                    { item: "Parmesan Cheese", price: "$4.99" }
+                    { item: "Raw Shrimp (frozen)", price: "$6.99" },
+                    { item: "Angel Hair Pasta", price: "$1.99" },
+                    { item: "Garlic", price: "$1.99" },
+                    { item: "White Wine", price: "$3.99" }
                 ],
                 prepTime: "16 minutes",
-                cost: "$3.50"
+                cost: "$3.70",
+                recipe: "Cook pasta al dente. Sauté minced garlic in butter, add shrimp and cook 2-3 minutes per side. Add wine and simmer 2 minutes. Toss with drained pasta and serve with lemon."
+            },
+            {
+                title: "Moroccan Lamb Tagine",
+                ingredients: [
+                    { item: "Ground Lamb", price: "$7.99/lb" },
+                    { item: "Moroccan Simmer Sauce", price: "$2.99" },
+                    { item: "Couscous", price: "$2.99" },
+                    { item: "Dried Apricots", price: "$3.99" }
+                ],
+                prepTime: "22 minutes",
+                cost: "$4.50",
+                recipe: "Brown lamb in large pot, breaking up as it cooks. Add simmer sauce and chopped apricots, simmer 15 minutes. Prepare couscous according to package. Serve lamb over couscous."
             },
             {
                 title: "Asian Lettuce Wraps",
@@ -551,84 +570,8 @@
                     { item: "Water Chestnuts", price: "$1.99" }
                 ],
                 prepTime: "14 minutes",
-                cost: "$3.00"
-            },
-            {
-                title: "Mediterranean Stuffed Eggplant",
-                ingredients: [
-                    { item: "Eggplant", price: "$2.99" },
-                    { item: "Ground Lamb", price: "$7.99/lb" },
-                    { item: "Feta Cheese", price: "$3.99" },
-                    { item: "Mediterranean Herb Seasoning", price: "$2.99" }
-                ],
-                prepTime: "35 minutes",
-                cost: "$4.50"
-            },
-            {
-                title: "Honey Walnut Shrimp",
-                ingredients: [
-                    { item: "Honey Walnut Shrimp (frozen)", price: "$7.99" },
-                    { item: "Jasmine Rice (microwave)", price: "$2.99" },
-                    { item: "Snow Peas", price: "$2.99" },
-                    { item: "Sesame Seeds", price: "$2.99" }
-                ],
-                prepTime: "12 minutes",
-                cost: "$4.00"
-            },
-            {
-                title: "Cuban Style Black Beans & Rice",
-                ingredients: [
-                    { item: "Cuban Style Black Beans", price: "$1.99" },
-                    { item: "Yellow Rice (frozen)", price: "$2.99" },
-                    { item: "Plantains", price: "$1.99" },
-                    { item: "Lime", price: "$0.99" }
-                ],
-                prepTime: "18 minutes",
-                cost: "$1.90"
-            },
-            {
-                title: "Balsamic Glazed Chicken",
-                ingredients: [
-                    { item: "Chicken Thighs", price: "$5.99/lb" },
-                    { item: "Balsamic Glaze", price: "$2.99" },
-                    { item: "Roasted Potatoes (frozen)", price: "$2.99" },
-                    { item: "Asparagus", price: "$2.99" }
-                ],
-                prepTime: "28 minutes",
-                cost: "$3.00"
-            },
-            {
-                title: "Cauliflower Fried Rice",
-                ingredients: [
-                    { item: "Cauliflower Rice (frozen)", price: "$2.99" },
-                    { item: "Scrambled Egg Whites", price: "$3.99" },
-                    { item: "Frozen Peas & Carrots", price: "$1.99" },
-                    { item: "Soy Sauce", price: "$1.99" }
-                ],
-                prepTime: "12 minutes",
-                cost: "$2.70"
-            },
-            {
-                title: "Greek Style Chicken Bowl",
-                ingredients: [
-                    { item: "Greek Style Chicken (frozen)", price: "$4.99" },
-                    { item: "Mediterranean Quinoa", price: "$3.99" },
-                    { item: "Cucumber", price: "$1.99" },
-                    { item: "Tzatziki", price: "$3.99" }
-                ],
-                prepTime: "15 minutes",
-                cost: "$3.70"
-            },
-            {
-                title: "Teriyaki Chicken Rice Bowl",
-                ingredients: [
-                    { item: "Teriyaki Chicken (frozen)", price: "$4.99" },
-                    { item: "Brown Rice (microwave)", price: "$2.99" },
-                    { item: "Broccoli Slaw", price: "$2.49" },
-                    { item: "Sesame Seeds", price: "$2.99" }
-                ],
-                prepTime: "13 minutes",
-                cost: "$3.30"
+                cost: "$3.00",
+                recipe: "Cook ground chicken until done. Add diced water chestnuts and stir fry sauce, cook 2 minutes. Serve mixture in lettuce cups with extra sauce for drizzling."
             },
             {
                 title: "Stuffed Portobello Mushrooms",
@@ -639,108 +582,824 @@
                     { item: "Mozzarella Cheese", price: "$3.99" }
                 ],
                 prepTime: "22 minutes",
-                cost: "$3.50"
+                cost: "$3.50",
+                recipe: "Remove stems from mushrooms and scrape out gills. Cook crumbled sausage until browned. Fill mushroom caps with sausage, top with marinara and cheese. Bake at 400°F for 15 minutes."
             },
             {
-                title: "Coconut Curry Chicken",
+                title: "Cuban Black Bean Bowl",
                 ingredients: [
-                    { item: "Chicken Curry (frozen)", price: "$4.99" },
-                    { item: "Coconut Rice (frozen)", price: "$2.99" },
-                    { item: "Thai Basil", price: "$1.99" },
+                    { item: "Cuban Style Black Beans", price: "$1.99" },
+                    { item: "Yellow Rice", price: "$2.99" },
+                    { item: "Plantains", price: "$1.99" },
                     { item: "Lime", price: "$0.99" }
                 ],
-                prepTime: "14 minutes",
-                cost: "$5.00"
+                prepTime: "18 minutes",
+                cost: "$1.90",
+                recipe: "Heat black beans and rice according to packages. Slice plantains and pan fry until golden. Serve beans over rice with fried plantains and lime wedges."
+            },
+            {
+                title: "Honey Walnut Shrimp",
+                ingredients: [
+                    { item: "Honey Walnut Shrimp (frozen)", price: "$7.99" },
+                    { item: "Jasmine Rice", price: "$2.99" },
+                    { item: "Snow Peas", price: "$2.99" },
+                    { item: "Sesame Oil", price: "$3.99" }
+                ],
+                prepTime: "12 minutes",
+                cost: "$4.00",
+                recipe: "Cook shrimp according to package. Steam snow peas 3 minutes until crisp-tender, toss with sesame oil. Serve shrimp over rice with snow peas on the side."
+            },
+            {
+                title: "Mediterranean Quinoa Bowl",
+                ingredients: [
+                    { item: "Tri-Color Quinoa", price: "$3.99" },
+                    { item: "Mediterranean Vegetables", price: "$3.99" },
+                    { item: "Feta Cheese", price: "$3.99" },
+                    { item: "Lemon Vinaigrette", price: "$2.99" }
+                ],
+                prepTime: "20 minutes",
+                cost: "$3.70",
+                recipe: "Cook quinoa according to package. Roast vegetables at 425°F for 15 minutes. Combine quinoa and vegetables, top with crumbled feta and drizzle with vinaigrette."
+            },
+            {
+                title: "Coconut Curry Soup",
+                ingredients: [
+                    { item: "Thai Coconut Curry Soup", price: "$3.99" },
+                    { item: "Rice Noodles", price: "$2.99" },
+                    { item: "Lime", price: "$0.99" },
+                    { item: "Cilantro", price: "$1.99" }
+                ],
+                prepTime: "10 minutes",
+                cost: "$2.50",
+                recipe: "Heat soup according to package. Cook rice noodles separately and drain. Add noodles to soup bowls, ladle soup over top. Garnish with lime juice and fresh cilantro."
+            },
+            {
+                title: "Balsamic Glazed Pork Tenderloin",
+                ingredients: [
+                    { item: "Pork Tenderloin", price: "$6.99" },
+                    { item: "Balsamic Glaze", price: "$2.99" },
+                    { item: "Roasted Potatoes (frozen)", price: "$2.99" },
+                    { item: "Green Beans", price: "$2.99" }
+                ],
+                prepTime: "28 minutes",
+                cost: "$4.00",
+                recipe: "Season pork and sear in oven-safe pan. Brush with balsamic glaze and roast at 425°F for 15 minutes. Roast potatoes and steam green beans. Slice pork and serve with vegetables."
+            },
+            {
+                title: "Cauliflower Fried Rice",
+                ingredients: [
+                    { item: "Cauliflower Rice", price: "$2.99" },
+                    { item: "Scrambled Eggs", price: "$3.99" },
+                    { item: "Frozen Peas & Carrots", price: "$1.99" },
+                    { item: "Soy Sauce", price: "$1.99" }
+                ],
+                prepTime: "12 minutes",
+                cost: "$2.70",
+                recipe: "Heat oil in large pan or wok. Stir fry cauliflower rice 5 minutes. Add peas and carrots, cook 3 minutes. Push to one side, scramble eggs on empty side, then mix everything with soy sauce."
+            },
+            {
+                title: "Turkey Chili",
+                ingredients: [
+                    { item: "Ground Turkey", price: "$5.99/lb" },
+                    { item: "Three Bean Chili", price: "$2.99" },
+                    { item: "Diced Tomatoes", price: "$1.99" },
+                    { item: "Cornbread Mix", price: "$2.99" }
+                ],
+                prepTime: "25 minutes",
+                cost: "$3.40",
+                recipe: "Brown ground turkey in large pot. Add chili and diced tomatoes, simmer 15 minutes. Meanwhile, prepare cornbread according to package. Serve chili hot with cornbread on the side."
             },
             {
                 title: "Poke Bowl",
                 ingredients: [
                     { item: "Ahi Tuna (frozen)", price: "$8.99" },
-                    { item: "Sushi Rice (frozen)", price: "$2.99" },
+                    { item: "Sushi Rice", price: "$2.99" },
                     { item: "Edamame", price: "$1.99" },
                     { item: "Spicy Peanut Sauce", price: "$2.99" }
                 ],
-                prepTime: "12 minutes",
-                cost: "$4.20"
+                prepTime: "15 minutes",
+                cost: "$4.20",
+                recipe: "Thaw tuna and cube. Prepare sushi rice according to package. Steam edamame. Serve tuna over rice with edamame and drizzle with spicy peanut sauce."
             },
             {
-                title: "BBQ Pulled Pork Sweet Potato",
+                title: "Stuffed Zucchini Boats",
                 ingredients: [
-                    { item: "BBQ Pulled Pork", price: "$4.99" },
-                    { item: "Sweet Potatoes", price: "$1.99/bag" },
-                    { item: "Coleslaw Mix", price: "$2.49" },
-                    { item: "BBQ Sauce", price: "$2.99" }
+                    { item: "Large Zucchini", price: "$2.99" },
+                    { item: "Ground Turkey", price: "$5.99/lb" },
+                    { item: "Marinara Sauce", price: "$1.99" },
+                    { item: "Italian Cheese Blend", price: "$3.99" }
+                ],
+                prepTime: "35 minutes",
+                cost: "$3.70",
+                recipe: "Halve zucchini lengthwise and scoop out center. Brown turkey with marinara sauce. Fill zucchini with mixture, top with cheese. Bake at 375°F for 25 minutes."
+            },
+            {
+                title: "Chicken Pad See Ew",
+                ingredients: [
+                    { item: "Rice Noodles (wide)", price: "$2.99" },
+                    { item: "Chicken Strips", price: "$4.99" },
+                    { item: "Chinese Broccoli", price: "$2.99" },
+                    { item: "Pad See Ew Sauce", price: "$2.99" }
+                ],
+                prepTime: "16 minutes",
+                cost: "$3.50",
+                recipe: "Soak noodles until soft. Stir fry chicken until cooked, add broccoli and cook 2 minutes. Add drained noodles and sauce, toss everything together for 2-3 minutes."
+            },
+            {
+                title: "Eggplant Parmesan",
+                ingredients: [
+                    { item: "Breaded Eggplant (frozen)", price: "$3.99" },
+                    { item: "Marinara Sauce", price: "$1.99" },
+                    { item: "Fresh Mozzarella", price: "$3.99" },
+                    { item: "Basil", price: "$1.99" }
                 ],
                 prepTime: "25 minutes",
-                cost: "$3.00"
+                cost: "$2.90",
+                recipe: "Bake eggplant according to package. Layer with marinara sauce and sliced mozzarella. Bake 10 more minutes until cheese melts. Garnish with fresh basil leaves."
             },
             {
-                title: "Spanakopita Style Chicken",
+                title: "Shepherd's Pie",
                 ingredients: [
-                    { item: "Chicken Breasts", price: "$6.99/lb" },
-                    { item: "Spinach & Feta Cheese Filling", price: "$3.99" },
-                    { item: "Phyllo Dough (frozen)", price: "$2.99" },
-                    { item: "Olive Oil", price: "$3.99" }
+                    { item: "Ground Lamb", price: "$7.99/lb" },
+                    { item: "Frozen Mixed Vegetables", price: "$1.99" },
+                    { item: "Mashed Potatoes (frozen)", price: "$2.99" },
+                    { item: "Worcestershire Sauce", price: "$2.99" }
                 ],
                 prepTime: "30 minutes",
-                cost: "$4.50"
+                cost: "$4.00",
+                recipe: "Brown lamb and add vegetables and Worcestershire. Transfer to baking dish, top with thawed mashed potatoes. Bake at 375°F for 20 minutes until golden on top."
             },
             {
-                title: "Chili Lime Cod Tacos",
+                title: "Vietnamese Spring Rolls",
                 ingredients: [
-                    { item: "Chili Lime Fish Fillets", price: "$7.99" },
-                    { item: "Corn Tortillas", price: "$2.49" },
-                    { item: "Avocado", price: "$2.99" },
-                    { item: "Cilantro Lime Crema", price: "$3.99" }
+                    { item: "Spring Roll Wrappers", price: "$2.99" },
+                    { item: "Cooked Shrimp", price: "$5.99" },
+                    { item: "Asian Slaw Mix", price: "$2.99" },
+                    { item: "Peanut Dipping Sauce", price: "$2.99" }
+                ],
+                prepTime: "20 minutes",
+                cost: "$3.70",
+                recipe: "Soften wrappers in warm water. Fill with shrimp and slaw mix, roll tightly. Serve immediately with peanut sauce for dipping."
+            },
+            {
+                title: "Chipotle Chicken Bowl",
+                ingredients: [
+                    { item: "Chipotle Chicken (frozen)", price: "$4.99" },
+                    { item: "Cilantro Lime Rice", price: "$2.99" },
+                    { item: "Black Bean & Corn Salsa", price: "$2.99" },
+                    { item: "Avocado", price: "$2.99" }
+                ],
+                prepTime: "14 minutes",
+                cost: "$3.50",
+                recipe: "Heat chicken according to package. Warm rice and serve chicken over rice topped with salsa and sliced avocado."
+            },
+            {
+                title: "Lemon Herb Salmon",
+                ingredients: [
+                    { item: "Atlantic Salmon", price: "$8.99" },
+                    { item: "Herb Crusted Potatoes", price: "$2.99" },
+                    { item: "Asparagus", price: "$2.99" },
+                    { item: "Lemon", price: "$0.99" }
+                ],
+                prepTime: "22 minutes",
+                cost: "$4.00",
+                recipe: "Season salmon with herbs and lemon juice. Bake at 400°F for 15 minutes. Roast potatoes and asparagus at same temperature. Serve with lemon wedges."
+            },
+            {
+                title: "Indian Butter Paneer",
+                ingredients: [
+                    { item: "Paneer Tikka Masala", price: "$3.99" },
+                    { item: "Basmati Rice", price: "$2.99" },
+                    { item: "Garlic Naan", price: "$2.49" },
+                    { item: "Mango Chutney", price: "$2.99" }
+                ],
+                prepTime: "12 minutes",
+                cost: "$3.10",
+                recipe: "Heat paneer according to package. Prepare rice and warm naan. Serve paneer over rice with naan and chutney on the side."
+            },
+            {
+                title: "Buffalo Chicken Mac",
+                ingredients: [
+                    { item: "Mac & Cheese (frozen)", price: "$3.99" },
+                    { item: "Buffalo Chicken Dip", price: "$3.99" },
+                    { item: "Celery", price: "$1.99" },
+                    { item: "Blue Cheese Dressing", price: "$2.99" }
                 ],
                 prepTime: "15 minutes",
-                cost: "$4.30"
+                cost: "$3.20",
+                recipe: "Heat mac and cheese according to package. Warm buffalo chicken dip and stir into mac. Serve with celery sticks and blue cheese for cooling."
             },
             {
-                title: "Mushroom & Truffle Flatbread",
+                title: "Ratatouille",
                 ingredients: [
-                    { item: "Naan Flatbread", price: "$2.49" },
-                    { item: "Mushroom Medley", price: "$2.99" },
-                    { item: "Truffle Cheese", price: "$4.99" },
-                    { item: "Arugula", price: "$2.49" }
+                    { item: "Eggplant", price: "$2.99" },
+                    { item: "Zucchini", price: "$1.99" },
+                    { item: "Bell Peppers", price: "$2.99" },
+                    { item: "Herb de Provence", price: "$2.99" }
+                ],
+                prepTime: "40 minutes",
+                cost: "$2.80",
+                recipe: "Dice all vegetables. Sauté in olive oil with herbs until tender, about 25 minutes. Season with salt and pepper. Serve with crusty bread."
+            },
+            {
+                title: "Korean Kimchi Fried Rice",
+                ingredients: [
+                    { item: "Kimchi", price: "$3.99" },
+                    { item: "Jasmine Rice (leftover)", price: "$2.99" },
+                    { item: "Eggs", price: "$3.99" },
+                    { item: "Sesame Oil", price: "$3.99" }
+                ],
+                prepTime: "12 minutes",
+                cost: "$3.70",
+                recipe: "Heat oil in wok, add chopped kimchi and stir fry 2 minutes. Add cold rice and mix well. Push to side, scramble eggs, then mix together. Drizzle with sesame oil."
+            },
+            {
+                title: "Chicken Marsala",
+                ingredients: [
+                    { item: "Chicken Cutlets", price: "$5.99" },
+                    { item: "Marsala Wine", price: "$4.99" },
+                    { item: "Mushrooms", price: "$2.99" },
+                    { item: "Egg Noodles", price: "$1.99" }
+                ],
+                prepTime: "20 minutes",
+                cost: "$4.00",
+                recipe: "Cook chicken cutlets 4 minutes per side. Sauté mushrooms, add marsala and simmer 5 minutes. Cook noodles and serve chicken with mushroom sauce over noodles."
+            },
+            {
+                title: "Fish Tikka Masala",
+                ingredients: [
+                    { item: "White Fish Fillets", price: "$6.99" },
+                    { item: "Tikka Masala Sauce", price: "$2.99" },
+                    { item: "Basmati Rice", price: "$2.99" },
+                    { item: "Cilantro", price: "$1.99" }
                 ],
                 prepTime: "18 minutes",
-                cost: "$3.20"
+                cost: "$3.50",
+                recipe: "Cut fish into chunks and simmer in tikka masala sauce 10 minutes. Prepare rice according to package. Serve fish curry over rice garnished with fresh cilantro."
             },
             {
-                title: "Jerk Chicken with Plantains",
+                title: "Turkey Lettuce Wraps",
                 ingredients: [
-                    { item: "Jerk Chicken Thighs", price: "$5.99" },
+                    { item: "Ground Turkey", price: "$5.99/lb" },
+                    { item: "Asian Stir Fry Sauce", price: "$2.99" },
+                    { item: "Butter Lettuce", price: "$2.99" },
+                    { item: "Green Onions", price: "$1.99" }
+                ],
+                prepTime: "14 minutes",
+                cost: "$3.50",
+                recipe: "Cook ground turkey until browned. Add stir fry sauce and sliced green onions, cook 2 minutes. Serve in lettuce cups with extra sauce for drizzling."
+            },
+            {
+                title: "Vegetarian Chili",
+                ingredients: [
+                    { item: "Organic Three Bean Chili", price: "$2.99" },
+                    { item: "Diced Tomatoes", price: "$1.99" },
+                    { item: "Bell Pepper", price: "$2.99" },
+                    { item: "Cornbread", price: "$2.99" }
+                ],
+                prepTime: "20 minutes",
+                cost: "$2.70",
+                recipe: "Sauté diced bell pepper 5 minutes. Add chili and tomatoes, simmer 15 minutes. Warm cornbread in oven. Serve chili hot with cornbread on the side."
+            },
+            {
+                title: "Spanakopita",
+                ingredients: [
+                    { item: "Phyllo Dough", price: "$2.99" },
+                    { item: "Spinach & Feta Filling", price: "$3.99" },
+                    { item: "Olive Oil", price: "$3.99" },
+                    { item: "Greek Salad Kit", price: "$3.99" }
+                ],
+                prepTime: "35 minutes",
+                cost: "$3.70",
+                recipe: "Layer phyllo sheets brushing each with olive oil. Add filling and fold into triangles. Bake at 375°F for 25 minutes until golden. Serve with Greek salad."
+            },
+            {
+                title: "Chicken Pho",
+                ingredients: [
+                    { item: "Pho Soup Base", price: "$3.99" },
+                    { item: "Rice Noodles", price: "$2.99" },
+                    { item: "Chicken Strips", price: "$4.99" },
+                    { item: "Bean Sprouts", price: "$1.99" }
+                ],
+                prepTime: "16 minutes",
+                cost: "$3.50",
+                recipe: "Prepare soup base according to package. Cook rice noodles separately. Heat chicken strips. Assemble bowls with noodles, chicken, and hot broth. Top with bean sprouts."
+            },
+            {
+                title: "Meatball Subs",
+                ingredients: [
+                    { item: "Turkey Meatballs", price: "$4.99" },
+                    { item: "Sub Rolls", price: "$2.99" },
+                    { item: "Marinara Sauce", price: "$1.99" },
+                    { item: "Provolone Cheese", price: "$3.99" }
+                ],
+                prepTime: "18 minutes",
+                cost: "$3.50",
+                recipe: "Heat meatballs in marinara sauce until hot. Slice sub rolls and fill with meatball mixture. Top with cheese and broil 2-3 minutes until melted."
+            },
+            {
+                title: "Coconut Rice Bowl",
+                ingredients: [
+                    { item: "Coconut Rice", price: "$2.99" },
+                    { item: "Mango Chunks", price: "$3.99" },
+                    { item: "Edamame", price: "$1.99" },
+                    { item: "Lime", price: "$0.99" }
+                ],
+                prepTime: "12 minutes",
+                cost: "$2.50",
+                recipe: "Prepare coconut rice according to package. Steam edamame 3 minutes. Serve rice topped with mango chunks and edamame, squeezed with lime juice."
+            },
+            {
+                title: "Chicken Quesadillas",
+                ingredients: [
+                    { item: "Flour Tortillas", price: "$2.49" },
+                    { item: "Grilled Chicken Strips", price: "$4.99" },
+                    { item: "Mexican Cheese Blend", price: "$3.99" },
+                    { item: "Salsa Verde", price: "$2.99" }
+                ],
+                prepTime: "10 minutes",
+                cost: "$3.60",
+                recipe: "Fill tortillas with chicken and cheese. Cook in dry pan 2-3 minutes per side until crispy and cheese melts. Cut into wedges and serve with salsa verde."
+            },
+            {
+                title: "Thai Basil Beef",
+                ingredients: [
+                    { item: "Ground Beef", price: "$6.99/lb" },
+                    { item: "Thai Basil Sauce", price: "$2.99" },
+                    { item: "Jasmine Rice", price: "$2.99" },
+                    { item: "Thai Basil", price: "$1.99" }
+                ],
+                prepTime: "14 minutes",
+                cost: "$3.50",
+                recipe: "Brown ground beef in wok over high heat. Add basil sauce and fresh basil leaves, stir fry 2 minutes. Serve over steamed jasmine rice."
+            },
+            {
+                title: "Stuffed Acorn Squash",
+                ingredients: [
+                    { item: "Acorn Squash", price: "$1.99" },
+                    { item: "Quinoa Stuffing", price: "$3.99" },
+                    { item: "Dried Cranberries", price: "$3.99" },
+                    { item: "Pecans", price: "$4.99" }
+                ],
+                prepTime: "50 minutes",
+                cost: "$3.70",
+                recipe: "Halve squash and roast cut-side down 30 minutes at 400°F. Mix stuffing with cranberries and pecans. Fill squash halves and bake 15 more minutes."
+            },
+            {
+                title: "Chicken Cacciatore",
+                ingredients: [
+                    { item: "Chicken Thighs", price: "$5.99/lb" },
+                    { item: "Cacciatore Sauce", price: "$2.99" },
+                    { item: "Bell Peppers", price: "$2.99" },
+                    { item: "Polenta", price: "$2.99" }
+                ],
+                prepTime: "35 minutes",
+                cost: "$3.70",
+                recipe: "Brown chicken thighs skin-side down. Add sliced peppers and cacciatore sauce. Simmer covered 25 minutes. Prepare polenta and serve chicken over it."
+            },
+            {
+                title: "Sesame Noodles",
+                ingredients: [
+                    { item: "Chinese Noodles", price: "$2.99" },
+                    { item: "Sesame Tahini Sauce", price: "$3.99" },
+                    { item: "Cucumber", price: "$1.99" },
+                    { item: "Sesame Seeds", price: "$2.99" }
+                ],
+                prepTime: "12 minutes",
+                cost: "$2.90",
+                recipe: "Cook noodles according to package and drain. Toss with tahini sauce. Serve topped with julienned cucumber and sesame seeds."
+            },
+            {
+                title: "Lamb Kofta",
+                ingredients: [
+                    { item: "Ground Lamb", price: "$7.99/lb" },
+                    { item: "Mediterranean Seasoning", price: "$2.99" },
+                    { item: "Pita Bread", price: "$2.49" },
+                    { item: "Cucumber Yogurt Sauce", price: "$3.99" }
+                ],
+                prepTime: "18 minutes",
+                cost: "$4.30",
+                recipe: "Mix lamb with seasoning and form into oval patties. Grill or pan fry 6-8 minutes turning once. Serve with warm pita and cucumber yogurt sauce."
+            },
+            {
+                title: "Vegetable Stir Fry",
+                ingredients: [
+                    { item: "Stir Fry Vegetables", price: "$2.49" },
+                    { item: "Teriyaki Sauce", price: "$2.99" },
+                    { item: "Brown Rice", price: "$2.99" },
+                    { item: "Cashews", price: "$4.99" }
+                ],
+                prepTime: "12 minutes",
+                cost: "$3.40",
+                recipe: "Heat oil in wok over high heat. Stir fry vegetables 4-5 minutes until crisp-tender. Add teriyaki sauce and cashews. Serve over brown rice."
+            },
+            {
+                title: "Chicken Enchiladas",
+                ingredients: [
+                    { item: "Corn Tortillas", price: "$2.49" },
+                    { item: "Rotisserie Chicken", price: "$5.99" },
+                    { item: "Enchilada Sauce", price: "$2.99" },
+                    { item: "Mexican Cheese", price: "$3.99" }
+                ],
+                prepTime: "25 minutes",
+                cost: "$3.90",
+                recipe: "Shred chicken and roll in tortillas with cheese. Place in baking dish, cover with enchilada sauce and more cheese. Bake at 375°F for 20 minutes."
+            },
+            {
+                title: "Mediterranean Fish",
+                ingredients: [
+                    { item: "White Fish Fillets", price: "$6.99" },
+                    { item: "Mediterranean Olive Tapenade", price: "$3.99" },
+                    { item: "Cherry Tomatoes", price: "$2.99" },
+                    { item: "Orzo Pasta", price: "$1.99" }
+                ],
+                prepTime: "20 minutes",
+                cost: "$4.00",
+                recipe: "Top fish with tapenade and bake at 400°F for 15 minutes. Roast cherry tomatoes alongside. Cook orzo and serve fish over pasta with roasted tomatoes."
+            },
+            {
+                title: "Korean Beef Bulgogi",
+                ingredients: [
+                    { item: "Bulgogi Beef", price: "$7.99" },
+                    { item: "Short Grain Rice", price: "$2.99" },
+                    { item: "Kimchi", price: "$3.99" },
+                    { item: "Sesame Oil", price: "$3.99" }
+                ],
+                prepTime: "16 minutes",
+                cost: "$4.70",
+                recipe: "Cook bulgogi beef according to package instructions. Prepare rice and warm kimchi. Serve beef over rice with kimchi on the side, drizzled with sesame oil."
+            },
+            {
+                title: "Mushroom Stroganoff",
+                ingredients: [
+                    { item: "Mixed Mushrooms", price: "$2.99" },
+                    { item: "Egg Noodles", price: "$1.99" },
+                    { item: "Sour Cream", price: "$2.99" },
+                    { item: "Vegetable Broth", price: "$2.99" }
+                ],
+                prepTime: "18 minutes",
+                cost: "$2.70",
+                recipe: "Sauté sliced mushrooms until golden. Add broth and simmer 5 minutes. Stir in sour cream. Cook noodles and serve stroganoff over noodles."
+            },
+            {
+                title: "Chicken Tikka Skewers",
+                ingredients: [
+                    { item: "Chicken Tikka (frozen)", price: "$5.99" },
+                    { item: "Basmati Rice", price: "$2.99" },
+                    { item: "Cucumber Raita", price: "$3.99" },
+                    { item: "Naan Bread", price: "$2.49" }
+                ],
+                prepTime: "15 minutes",
+                cost: "$3.90",
+                recipe: "Cook chicken tikka according to package. Prepare rice and warm naan. Serve skewers over rice with raita and naan on the side."
+            },
+            {
+                title: "Jerk Chicken Bowl",
+                ingredients: [
+                    { item: "Jerk Chicken", price: "$5.99" },
+                    { item: "Coconut Rice", price: "$2.99" },
                     { item: "Plantains", price: "$1.99" },
-                    { item: "Coconut Rice (frozen)", price: "$2.99" },
                     { item: "Mango Salsa", price: "$3.99" }
                 ],
                 prepTime: "20 minutes",
-                cost: "$3.70"
+                cost: "$3.70",
+                recipe: "Cook jerk chicken according to package. Prepare coconut rice. Slice and pan fry plantains until golden. Serve chicken over rice with plantains and mango salsa."
+            },
+            {
+                title: "Italian Sausage Pasta",
+                ingredients: [
+                    { item: "Italian Sausage", price: "$3.99" },
+                    { item: "Penne Pasta", price: "$1.99" },
+                    { item: "Roasted Red Pepper Sauce", price: "$2.99" },
+                    { item: "Parmesan Cheese", price: "$4.99" }
+                ],
+                prepTime: "17 minutes",
+                cost: "$3.50",
+                recipe: "Cook pasta according to package. Brown sliced sausage 8 minutes. Add red pepper sauce and simmer 3 minutes. Toss with drained pasta and top with parmesan."
+            },
+            {
+                title: "Cilantro Lime Chicken",
+                ingredients: [
+                    { item: "Chicken Breasts", price: "$6.99/lb" },
+                    { item: "Cilantro Lime Marinade", price: "$2.99" },
+                    { item: "Black Bean & Corn Salsa", price: "$2.99" },
+                    { item: "Avocado", price: "$2.99" }
+                ],
+                prepTime: "20 minutes",
+                cost: "$4.00",
+                recipe: "Marinate chicken in cilantro lime sauce 10 minutes. Grill or bake 6-8 minutes per side. Serve topped with black bean salsa and sliced avocado."
+            },
+            {
+                title: "Beef and Mushroom Stir Fry",
+                ingredients: [
+                    { item: "Beef Stir Fry Strips", price: "$5.99" },
+                    { item: "Shiitake Mushrooms", price: "$3.99" },
+                    { item: "Stir Fry Sauce", price: "$2.99" },
+                    { item: "Rice Noodles", price: "$2.99" }
+                ],
+                prepTime: "14 minutes",
+                cost: "$4.00",
+                recipe: "Soak rice noodles until soft. Stir fry beef 3 minutes, add sliced mushrooms and cook 2 minutes. Add sauce and drained noodles, toss for 2 minutes."
+            },
+            {
+                title: "Caprese Stuffed Chicken",
+                ingredients: [
+                    { item: "Chicken Breasts", price: "$6.99/lb" },
+                    { item: "Fresh Mozzarella", price: "$3.99" },
+                    { item: "Sun-dried Tomatoes", price: "$3.99" },
+                    { item: "Fresh Basil", price: "$1.99" }
+                ],
+                prepTime: "25 minutes",
+                cost: "$4.20",
+                recipe: "Butterfly chicken breasts and stuff with mozzarella, tomatoes, and basil. Secure with toothpicks. Bake at 375°F for 20 minutes until cooked through."
+            },
+            {
+                title: "Moroccan Vegetable Tagine",
+                ingredients: [
+                    { item: "Moroccan Tagine Sauce", price: "$2.99" },
+                    { item: "Root Vegetables", price: "$3.99" },
+                    { item: "Chickpeas", price: "$1.99" },
+                    { item: "Couscous", price: "$2.99" }
+                ],
+                prepTime: "30 minutes",
+                cost: "$3.00",
+                recipe: "Chop root vegetables and simmer with tagine sauce and chickpeas 25 minutes until tender. Prepare couscous according to package. Serve tagine over couscous."
+            },
+            {
+                title: "Honey Garlic Salmon",
+                ingredients: [
+                    { item: "Salmon Fillets", price: "$8.99" },
+                    { item: "Honey Garlic Sauce", price: "$2.99" },
+                    { item: "Broccoli Florets", price: "$2.99" },
+                    { item: "Quinoa", price: "$3.99" }
+                ],
+                prepTime: "18 minutes",
+                cost: "$4.70",
+                recipe: "Brush salmon with honey garlic sauce and bake at 400°F for 12 minutes. Steam broccoli 5 minutes. Cook quinoa according to package. Serve salmon over quinoa with broccoli."
+            },
+            {
+                title: "Chicken Shawarma Wrap",
+                ingredients: [
+                    { item: "Shawarma Chicken", price: "$5.99" },
+                    { item: "Lavash Bread", price: "$2.99" },
+                    { item: "Cucumber", price: "$1.99" },
+                    { item: "Garlic Sauce", price: "$2.99" }
+                ],
+                prepTime: "12 minutes",
+                cost: "$3.50",
+                recipe: "Heat chicken according to package. Warm lavash bread. Slice cucumber thinly. Assemble wraps with chicken, cucumber, and garlic sauce. Roll tightly and serve."
+            },
+            {
+                title: "Vegetarian Pad Thai",
+                ingredients: [
+                    { item: "Pad Thai Noodles", price: "$2.99" },
+                    { item: "Pad Thai Sauce", price: "$2.99" },
+                    { item: "Mixed Vegetables", price: "$2.49" },
+                    { item: "Crushed Peanuts", price: "$3.99" }
+                ],
+                prepTime: "14 minutes",
+                cost: "$3.10",
+                recipe: "Soak noodles until soft. Stir fry vegetables 3 minutes. Add drained noodles and sauce, toss 3 minutes. Serve topped with crushed peanuts."
+            },
+            {
+                title: "Turkey Meatball Curry",
+                ingredients: [
+                    { item: "Turkey Meatballs", price: "$4.99" },
+                    { item: "Thai Red Curry Sauce", price: "$1.99" },
+                    { item: "Coconut Milk", price: "$1.99" },
+                    { item: "Jasmine Rice", price: "$2.99" }
+                ],
+                prepTime: "16 minutes",
+                cost: "$3.00",
+                recipe: "Simmer meatballs in curry sauce and coconut milk 12 minutes. Prepare rice according to package. Serve curry meatballs over rice."
+            },
+            {
+                title: "Stuffed Bell Pepper Soup",
+                ingredients: [
+                    { item: "Ground Turkey", price: "$5.99/lb" },
+                    { item: "Diced Bell Peppers", price: "$2.99" },
+                    { item: "Tomato Soup", price: "$2.99" },
+                    { item: "Brown Rice", price: "$2.99" }
+                ],
+                prepTime: "22 minutes",
+                cost: "$3.50",
+                recipe: "Brown ground turkey with diced peppers. Add tomato soup and simmer 15 minutes. Stir in cooked rice. Serve hot with crackers."
+            },
+            {
+                title: "Lemon Dill Cod",
+                ingredients: [
+                    { item: "Cod Fillets", price: "$7.99" },
+                    { item: "Lemon Dill Seasoning", price: "$2.99" },
+                    { item: "Baby Potatoes", price: "$2.99" },
+                    { item: "Green Beans", price: "$2.99" }
+                ],
+                prepTime: "25 minutes",
+                cost: "$4.00",
+                recipe: "Season cod with lemon dill and bake at 400°F for 15 minutes. Roast halved baby potatoes 20 minutes. Steam green beans 5 minutes. Serve together."
+            },
+            {
+                title: "Chicken Fajita Pasta",
+                ingredients: [
+                    { item: "Fajita Chicken Strips", price: "$4.99" },
+                    { item: "Penne Pasta", price: "$1.99" },
+                    { item: "Pepper & Onion Mix", price: "$2.99" },
+                    { item: "Queso Sauce", price: "$3.99" }
+                ],
+                prepTime: "16 minutes",
+                cost: "$3.50",
+                recipe: "Cook pasta according to package. Heat chicken and pepper mix together 8 minutes. Toss with drained pasta and queso sauce until creamy."
+            },
+            {
+                title: "Mediterranean Couscous",
+                ingredients: [
+                    { item: "Israeli Couscous", price: "$2.99" },
+                    { item: "Sun-dried Tomatoes", price: "$3.99" },
+                    { item: "Kalamata Olives", price: "$2.99" },
+                    { item: "Feta Cheese", price: "$3.99" }
+                ],
+                prepTime: "15 minutes",
+                cost: "$3.50",
+                recipe: "Cook couscous according to package. Stir in chopped sun-dried tomatoes and olives. Top with crumbled feta cheese and serve warm or cold."
+            },
+            {
+                title: "Teriyaki Chicken Skewers",
+                ingredients: [
+                    { item: "Chicken Skewers", price: "$5.99" },
+                    { item: "Teriyaki Glaze", price: "$2.99" },
+                    { item: "Pineapple Chunks", price: "$2.99" },
+                    { item: "Coconut Rice", price: "$2.99" }
+                ],
+                prepTime: "16 minutes",
+                cost: "$3.70",
+                recipe: "Brush skewers with teriyaki glaze and grill 12 minutes, turning once. Add pineapple chunks to grill last 4 minutes. Serve over coconut rice."
+            },
+            {
+                title: "Beef Bibimbap",
+                ingredients: [
+                    { item: "Korean Beef Bulgogi", price: "$7.99" },
+                    { item: "Short Grain Rice", price: "$2.99" },
+                    { item: "Mixed Vegetables", price: "$2.49" },
+                    { item: "Gochujang Sauce", price: "$2.99" }
+                ],
+                prepTime: "18 minutes",
+                cost: "$4.10",
+                recipe: "Cook bulgogi according to package. Prepare rice and stir fry vegetables separately. Arrange beef and vegetables over rice, serve with gochujang sauce."
+            },
+            {
+                title: "Chicken Parmesan Meatballs",
+                ingredients: [
+                    { item: "Chicken Meatballs", price: "$4.99" },
+                    { item: "Marinara Sauce", price: "$1.99" },
+                    { item: "Mozzarella Cheese", price: "$3.99" },
+                    { item: "Spaghetti", price: "$1.99" }
+                ],
+                prepTime: "18 minutes",
+                cost: "$3.20",
+                recipe: "Simmer meatballs in marinara 10 minutes. Top with mozzarella and broil 2 minutes. Cook spaghetti and serve meatballs over pasta."
+            },
+            {
+                title: "Thai Coconut Soup",
+                ingredients: [
+                    { item: "Tom Kha Soup Base", price: "$3.99" },
+                    { item: "Coconut Milk", price: "$1.99" },
+                    { item: "Mushrooms", price: "$2.99" },
+                    { item: "Lime", price: "$0.99" }
+                ],
+                prepTime: "12 minutes",
+                cost: "$2.50",
+                recipe: "Heat soup base with coconut milk. Add sliced mushrooms and simmer 8 minutes. Serve hot with lime wedges for squeezing."
+            },
+            {
+                title: "BBQ Pulled Pork Tacos",
+                ingredients: [
+                    { item: "BBQ Pulled Pork", price: "$4.99" },
+                    { item: "Corn Tortillas", price: "$2.49" },
+                    { item: "Coleslaw Mix", price: "$2.49" },
+                    { item: "BBQ Sauce", price: "$2.99" }
+                ],
+                prepTime: "12 minutes",
+                cost: "$3.00",
+                recipe: "Heat pulled pork according to package. Warm tortillas in dry pan. Mix coleslaw with a splash of vinegar. Serve pork in tortillas topped with slaw and extra BBQ sauce."
+            },
+            {
+                title: "Chicken Tikka Pizza",
+                ingredients: [
+                    { item: "Pizza Dough", price: "$1.99" },
+                    { item: "Tikka Masala Sauce", price: "$2.99" },
+                    { item: "Chicken Tikka", price: "$5.99" },
+                    { item: "Red Onion", price: "$1.99" }
+                ],
+                prepTime: "22 minutes",
+                cost: "$3.20",
+                recipe: "Stretch dough on oiled pan. Spread tikka masala sauce, top with chicken pieces and sliced red onion. Bake at 450°F for 15 minutes until golden."
+            },
+            {
+                title: "Greek Lemon Chicken",
+                ingredients: [
+                    { item: "Chicken Thighs", price: "$5.99/lb" },
+                    { item: "Greek Seasoning", price: "$2.99" },
+                    { item: "Lemon", price: "$0.99" },
+                    { item: "Roasted Potatoes", price: "$2.99" }
+                ],
+                prepTime: "35 minutes",
+                cost: "$3.20",
+                recipe: "Season chicken with Greek seasoning and lemon juice. Roast at 400°F for 30 minutes with potatoes. Squeeze fresh lemon over before serving."
+            },
+            {
+                title: "Mushroom Barley Soup",
+                ingredients: [
+                    { item: "Mushroom Barley Soup", price: "$2.99" },
+                    { item: "Mixed Mushrooms", price: "$2.99" },
+                    { item: "Vegetable Broth", price: "$2.99" },
+                    { item: "Crusty Bread", price: "$2.99" }
+                ],
+                prepTime: "15 minutes",
+                cost: "$2.90",
+                recipe: "Heat soup according to package. Sauté sliced mushrooms and add to soup with extra broth if needed. Serve hot with crusty bread."
+            },
+            {
+                title: "Salmon Poke Bowl",
+                ingredients: [
+                    { item: "Sushi Grade Salmon", price: "$9.99" },
+                    { item: "Sushi Rice", price: "$2.99" },
+                    { item: "Avocado", price: "$2.99" },
+                    { item: "Sriracha Mayo", price: "$2.99" }
+                ],
+                prepTime: "15 minutes",
+                cost: "$4.70",
+                recipe: "Cube salmon and marinate in soy sauce 5 minutes. Prepare sushi rice according to package. Serve salmon over rice with sliced avocado and sriracha mayo drizzle."
+            },
+            {
+                title: "Cuban Mojo Pork",
+                ingredients: [
+                    { item: "Pork Shoulder", price: "$5.99/lb" },
+                    { item: "Mojo Marinade", price: "$2.99" },
+                    { item: "Black Beans", price: "$1.99" },
+                    { item: "Yellow Rice", price: "$2.99" }
+                ],
+                prepTime: "45 minutes",
+                cost: "$3.50",
+                recipe: "Marinate pork in mojo 30 minutes. Roast at 400°F for 30 minutes. Heat black beans and rice. Slice pork and serve with beans and rice."
+            },
+            {
+                title: "Chicken Alfredo Gnocchi",
+                ingredients: [
+                    { item: "Potato Gnocchi", price: "$1.99" },
+                    { item: "Alfredo Sauce", price: "$2.99" },
+                    { item: "Grilled Chicken Strips", price: "$4.99" },
+                    { item: "Broccoli Florets", price: "$2.99" }
+                ],
+                prepTime: "14 minutes",
+                cost: "$3.20",
+                recipe: "Boil gnocchi until they float, about 3 minutes. Heat alfredo sauce with chicken strips. Steam broccoli 4 minutes. Toss everything together and serve."
+            },
+            {
+                title: "Vegetable Fried Rice",
+                ingredients: [
+                    { item: "Vegetable Fried Rice (frozen)", price: "$2.99" },
+                    { item: "Scrambled Eggs", price: "$3.99" },
+                    { item: "Soy Sauce", price: "$1.99" },
+                    { item: "Green Onions", price: "$1.99" }
+                ],
+                prepTime: "10 minutes",
+                cost: "$2.70",
+                recipe: "Heat fried rice according to package. Scramble eggs separately. Mix eggs into rice with soy sauce and sliced green onions."
             }
         ];
 
         function getRandomMeal() {
-            const mealDisplay = document.getElementById('meal-display');
             const randomIndex = Math.floor(Math.random() * meals.length);
             const meal = meals[randomIndex];
             
-            const ingredientsList = meal.ingredients.map(ingredient => 
-                `<li><span>${ingredient.item}</span><span class="price">${ingredient.price}</span></li>`
-            ).join('');
+            const mealDisplay = document.getElementById('meal-display');
+            
+            let ingredientsList = '';
+            meal.ingredients.forEach(ingredient => {
+                ingredientsList += `<li><span>${ingredient.item}</span><span class="price">${ingredient.price}</span></li>`;
+            });
             
             mealDisplay.innerHTML = `
-                <div class="meal-card show">
-                    <h2 class="meal-title">${meal.title}</h2>
+                <div class="meal-card">
+                    <div class="meal-title">${meal.title}</div>
                     <ul class="ingredients">
                         ${ingredientsList}
                     </ul>
+                    <div class="recipe">
+                        <div class="recipe-title">🍳 Quick Recipe</div>
+                        <div class="recipe-steps">${meal.recipe}</div>
+                    </div>
                     <div class="meal-info">
-                        <div class="prep-time">⏱️ ${meal.prepTime}</div>
-                        <div class="cost">💰 Estimated Cost: ${meal.cost}</div>
+                        <span class="prep-time">⏱️ ${meal.prepTime}</span>
+                        <span class="cost">💰 ${meal.cost} per serving</span>
                     </div>
                 </div>
             `;
+            
+            // Add animation
+            setTimeout(() => {
+                const mealCard = document.querySelector('.meal-card');
+                mealCard.classList.add('show');
+            }, 100);
         }
     </script>
 </body>
