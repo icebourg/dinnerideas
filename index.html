@@ -163,6 +163,116 @@
             transform: translateY(-1px);
         }
 
+        .view-all-btn {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1em;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+            margin-left: 15px;
+        }
+
+        .view-all-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(52, 152, 219, 0.4);
+            background: linear-gradient(45deg, #2980b9, #1f4e79);
+        }
+
+        .view-all-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .recipe-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .recipe-modal-content {
+            background: white;
+            margin: 2% auto;
+            padding: 30px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .close-modal {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            position: absolute;
+            top: 15px;
+            right: 25px;
+        }
+
+        .close-modal:hover {
+            color: #e74c3c;
+        }
+
+        .recipe-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .recipe-item {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 4px solid #3498db;
+        }
+
+        .recipe-item:hover {
+            background: #e8f4f8;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.2);
+        }
+
+        .recipe-item-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        .recipe-item-info {
+            display: flex;
+            justify-content: space-between;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .modal-title {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 2em;
+            font-weight: 300;
+            text-align: center;
+        }
+
         .placeholder {
             color: #95a5a6;
             font-style: italic;
@@ -194,11 +304,21 @@
         <p class="subtitle">Quick, healthy, and delicious meals when inspiration runs low</p>
         
         <button class="random-btn" onclick="getRandomMeal()">Get Random Meal</button>
+        <button class="view-all-btn" onclick="showAllRecipes()">View All Recipes</button>
         
         <div id="meal-display">
             <div class="placeholder">
                 Click the button above to discover your next delicious dinner!
             </div>
+        </div>
+    </div>
+
+    <!-- Recipe List Modal -->
+    <div id="recipe-modal" class="recipe-modal">
+        <div class="recipe-modal-content">
+            <span class="close-modal" onclick="closeRecipeModal()">&times;</span>
+            <h2 class="modal-title">🍽️ All Available Recipes</h2>
+            <div id="recipe-list" class="recipe-list"></div>
         </div>
     </div>
 
@@ -1370,7 +1490,10 @@
         function getRandomMeal() {
             const randomIndex = Math.floor(Math.random() * meals.length);
             const meal = meals[randomIndex];
-            
+            displayMeal(meal);
+        }
+
+        function displayMeal(meal) {
             const mealDisplay = document.getElementById('meal-display');
             
             let ingredientsList = '';
@@ -1400,6 +1523,46 @@
                 const mealCard = document.querySelector('.meal-card');
                 mealCard.classList.add('show');
             }, 100);
+        }
+
+        function showAllRecipes() {
+            const modal = document.getElementById('recipe-modal');
+            const recipeList = document.getElementById('recipe-list');
+            
+            let recipesHTML = '';
+            meals.forEach((meal, index) => {
+                recipesHTML += `
+                    <div class="recipe-item" onclick="selectRecipe(${index})">
+                        <div class="recipe-item-title">${meal.title}</div>
+                        <div class="recipe-item-info">
+                            <span>⏱️ ${meal.prepTime}</span>
+                            <span>💰 ${meal.cost}</span>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            recipeList.innerHTML = recipesHTML;
+            modal.style.display = 'block';
+        }
+
+        function selectRecipe(index) {
+            const meal = meals[index];
+            displayMeal(meal);
+            closeRecipeModal();
+        }
+
+        function closeRecipeModal() {
+            const modal = document.getElementById('recipe-modal');
+            modal.style.display = 'none';
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById('recipe-modal');
+            if (event.target === modal) {
+                closeRecipeModal();
+            }
         }
     </script>
 </body>
